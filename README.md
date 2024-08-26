@@ -6,7 +6,7 @@
 <table>
   <tr>
 
-  <td align="center"><a href="https://github.com/stonerfuzz"><img src="" width="100px;" alt=""/><br /><sub><b>Caio Xavier</b></sub></a><br/></td>
+  <td align="center"><a href="https://github.com/stnrfzz"><img src="" width="100px;" alt=""/><br /><sub><b>Caio Xavier</b></sub></a><br/></td>
   
  <td align="center"><a href="https://github.com/Marina-Paixao"><img src="https://github.com/miriamrms/PeNaAreia/blob/main/Contributors/marina.jpg" width="100px;" alt=""/><br /><sub><b>Marina Paixão</b></sub></a><br/></td>
 
