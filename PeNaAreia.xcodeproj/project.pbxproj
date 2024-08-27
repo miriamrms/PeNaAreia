@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */; };
-		176E95672C7CB284004FB149 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95662C7CB284004FB149 /* ContentView.swift */; };
+		176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95662C7CB284004FB149 /* TentDetailsView.swift */; };
 		176E95692C7CB284004FB149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E95682C7CB284004FB149 /* Assets.xcassets */; };
 		176E956C2C7CB284004FB149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E956B2C7CB284004FB149 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		176E95612C7CB284004FB149 /* PeNaAreia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeNaAreia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeNaAreiaApp.swift; sourceTree = "<group>"; };
-		176E95662C7CB284004FB149 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		176E95662C7CB284004FB149 /* TentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentDetailsView.swift; sourceTree = "<group>"; };
 		176E95682C7CB284004FB149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176E956B2C7CB284004FB149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
-				176E95662C7CB284004FB149 /* ContentView.swift */,
+				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 				176E95682C7CB284004FB149 /* Assets.xcassets */,
 				176E956A2C7CB284004FB149 /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176E95672C7CB284004FB149 /* ContentView.swift in Sources */,
+				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
