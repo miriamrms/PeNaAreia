@@ -54,8 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				6AB482FE2C7E0F47009C8B9A /* Views */,
-				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
 				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
+				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
 				176E95682C7CB284004FB149 /* Assets.xcassets */,
 				176E956A2C7CB284004FB149 /* Preview Content */,
 			);
@@ -148,7 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176E95672C7CB284004FB149 /* ContentView.swift in Sources */,
+				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				6AB483002C7E0F7A009C8B9A /* HeaderView.swift in Sources */,
 				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */,
