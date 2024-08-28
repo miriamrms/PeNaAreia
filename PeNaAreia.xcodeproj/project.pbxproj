@@ -13,6 +13,8 @@
 		176E956C2C7CB284004FB149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E956B2C7CB284004FB149 /* Preview Assets.xcassets */; };
 		6AB483002C7E0F7A009C8B9A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB482FF2C7E0F7A009C8B9A /* HeaderView.swift */; };
 		6AB483032C7E1C90009C8B9A /* TentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB483022C7E1C90009C8B9A /* TentsView.swift */; };
+		B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */; };
+		B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		176E956B2C7CB284004FB149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AB482FF2C7E0F7A009C8B9A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		6AB483022C7E1C90009C8B9A /* TentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentsView.swift; sourceTree = "<group>"; };
+		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 			children = (
 				6AB482FE2C7E0F47009C8B9A /* Views */,
 				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
+				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
+				B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */,
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
 				176E95682C7CB284004FB149 /* Assets.xcassets */,
 				176E956A2C7CB284004FB149 /* Preview Content */,
@@ -151,11 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */,
 				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				6AB483002C7E0F7A009C8B9A /* HeaderView.swift in Sources */,
 				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */,
 				6AB483032C7E1C90009C8B9A /* TentsView.swift in Sources */,
+				B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

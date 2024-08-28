@@ -86,27 +86,116 @@ struct ContentView: View {
                                 .padding(.leading)
                             }
                             
-                            VStack{
-                                HStack {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 15)
+                            HStack{
+                                VStack {
+                                    HStack {
+                                        ZStack {
+                                            
+                                            HStack(spacing: 4) {
+                                                //colocar chuveiro
+                                                Image("chuveiro.ic")
+                                                Text("Possui chuveiro")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.regular)
+                                                    .foregroundColor(Color.darkblue)
+                                                
+                                            }
                                             .frame(width: 144.0, height: 29.0)
-                                        .foregroundColor(.lightblue)
-                                        
-                                        HStack {
-                                            //colocar chuveiro
-                                            Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
+                                            
                                         }
-                                    }
-                                    
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 15)
+                                        
+                                        ZStack {
+                                            HStack(spacing: 4) {
+                                                //colocar chuveiro
+                                                Image("banheiro.ic")
+                                                Text("Banheiro perto")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.regular)
+                                                    .foregroundColor(Color.darkblue)
+                                                
+                                            }
                                             .frame(width: 144.0, height: 29.0)
-                                        .foregroundColor(.lightblue)
+                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
+                                            
+                                        }
+                                        
                                     }
                                     
+                                    HStack {
+                                        ZStack {
+                                            
+                                            HStack(spacing: 4) {
+                                                Image("dinheiro.ic")
+                                                Text("Preços elevados")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.regular)
+                                                    .foregroundColor(Color.darkblue)
+                                                
+                                            }
+                                            .frame(width: 144.0, height: 29.0)
+                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
+                                            
+                                        }
+                                        
+                                        ZStack {
+                                            HStack(spacing: 4) {
+                                                Image("riscodebanho.ic")
+                                                Text("Banho arriscado")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.regular)
+                                                    .foregroundColor(Color.darkblue)
+                                                
+                                            }
+                                            .frame(width: 144.0, height: 29.0)
+                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
+                                            
+                                        }
+                                        
+                                    }
+
+                                }
+                                Spacer()
+                            }
+                            .padding(.leading)
+                            //MARK: - Segmented control
+                            VStack {
+                                HStack (spacing: 84) {
+                                    HStack(alignment: .top) {
+                                        Image("fish.ic")
+                                        
+                                        Text("Comidas")
+                                            .foregroundStyle(Color.darkblue)
+                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                    }
+                                    HStack(alignment: .top) {
+                                        Image("coco.ic")
+                                            .resizable()
+                                            .frame(width: 14.0, height: 20.0)
+                                        
+                                        Text("Bebidas")
+                                            .foregroundStyle(Color.darkblue)
+                                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                    }
+                                } .padding(.top, 34)
+                                ZStack {
+                                    Rectangle()
+                                        .frame(height: 8)
+                                        .foregroundStyle(Color.lighterblue)
+                                    HStack {
+                                        Rectangle()
+                                            .frame(width: 196, height: 8)
+                                            .foregroundStyle(Color.lightblue)
+                                        Spacer()
+                                    }
                                 }
                             }
+                            Spacer()
+                                .frame(height: 294.0)
                             }
                         
                         
