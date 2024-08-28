@@ -9,25 +9,18 @@ import SwiftUI
 
 struct TentsView: View {
     
-    @State private var searchText = ""
-    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
     var body: some View {
+        
         VStack {
+            
             HStack {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .padding(.leading, 8)
-                        .foregroundStyle(Color.magnifyingglass)
-                    TextField("Procure por barracas", text: $searchText)
-                }
-                .frame(width: 315, height: 36)
-                .background(Color.searchbar)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+                
+                SearchBar(widthBar: 315, searchPrompt: "Procure por barracas")
                 
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
@@ -40,6 +33,7 @@ struct TentsView: View {
                     TentCard()
                 }
             } .padding()
+            
         }
     }
 }
@@ -69,17 +63,17 @@ struct TentCard: View {
                 
                 HStack {
                     
-                    iconsTents(iconName: "shower.fill")
-                    iconsTents(iconName: "toilet.fill")
-                    iconsTents(iconName: "figure.open.water.swim")
+                    TentsIcons(iconName: "shower.fill")
+                    TentsIcons(iconName: "toilet.fill")
+                    TentsIcons(iconName: "figure.open.water.swim")
                     
                     Spacer()
                     
                     HStack (spacing: -2){
                         
-                        iconsTents(iconName: "person.fill")
-                        iconsTents(iconName: "person.fill")
-                        iconsTents(iconName: "person.fill")
+                        TentsIcons(iconName: "person.fill")
+                        TentsIcons(iconName: "person.fill")
+                        TentsIcons(iconName: "person.fill")
                         
                     }
                 } .padding(.bottom, 8)
@@ -92,15 +86,36 @@ struct TentCard: View {
     }
 }
 
-struct iconsTents: View {
+struct TentsIcons: View {
     
     var iconName: String
-
+    
     var body: some View {
-      
+        
         Image(systemName: "\(iconName)")
             .foregroundStyle(Color.white)
             .imageScale(.small)
+        
+    }
+}
+
+struct SearchBar: View {
+    
+    @State private var searchText = ""
+    var widthBar: CGFloat
+    var searchPrompt: String
+    
+    var body: some View {
+        
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .padding(.leading, 8)
+                .foregroundStyle(Color.magnifyingglass)
+            TextField("\(searchPrompt)", text: $searchText)
+        }
+        .frame(width: widthBar, height: 36)
+        .background(Color.searchbar)
+        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
         
     }
 }
