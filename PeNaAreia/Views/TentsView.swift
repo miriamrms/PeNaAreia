@@ -25,16 +25,20 @@ struct TentsView: View {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
-            } .padding(.top, 332)
+            } .padding(.bottom, 24)
             
             
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(1...10, id: \.self) { i in
-                    TentCard()
-                }
-            } .padding()
             
-        }
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(1...10, id: \.self) { i in
+                        TentCard()
+                    }
+                } .padding(0)
+            }
+            
+        } .background(.clear)
+            .frame(width: 354)
     }
 }
 
