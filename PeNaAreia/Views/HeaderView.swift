@@ -16,7 +16,7 @@ struct HeaderView: View {
                 Image("headerwaves")
                 Image("logo")
                     .padding(.top, 16)
-                Text("Ensolarado, 36º | Maré baixa")
+                Text("Ensolarado, 36º  |  Maré baixa")
                     .foregroundStyle(Color.darkerblue)
                     .font(.system(size: 14, design: .rounded))
                 VStack {
