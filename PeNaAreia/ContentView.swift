@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var wvm = WeatherViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Pé na areia")
-        }
-        .padding()
+       HeaderView()
+            .environmentObject(wvm)
     }
 }
 

@@ -25,7 +25,7 @@ struct TentsView: View {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
-            } .padding(.bottom, 24)
+            } .padding(.bottom, 16)
             
             
             
