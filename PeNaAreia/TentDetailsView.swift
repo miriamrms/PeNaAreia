@@ -52,14 +52,15 @@ struct ContentView: View {
                             }
                             
                             VStack {
-                                HStack {
+                                HStack (alignment: .center) {
                                         Text("Nome da Barraca")
                                             .font(.system(size: 34))
+                                            .frame(width: 280)
                                             .fontDesign(.rounded)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.darkblue)
                                         
-                                        VStack {
+                                    VStack (spacing:-3){
                                             Image("lotacaoBaixa.ic")
                                             
                                             Text("Lotação há 2min")
@@ -169,7 +170,7 @@ struct ContentView: View {
                                         Image("fish.ic")
                                         
                                         Text("Comidas")
-                                            .foregroundStyle(Color.darkblue)
+                                            .foregroundStyle(Color.darkerblue)
                                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                                     }
                                     HStack(alignment: .top) {
@@ -178,22 +179,23 @@ struct ContentView: View {
                                             .frame(width: 14.0, height: 20.0)
                                         
                                         Text("Bebidas")
-                                            .foregroundStyle(Color.darkblue)
+                                            .foregroundStyle(Color.darkerblue)
                                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                                     }
-                                } .padding(.top, 34)
+                                } .padding(.top, 30)
                                 ZStack {
                                     Rectangle()
-                                        .frame(height: 8)
+                                        .frame(height: 4)
                                         .foregroundStyle(Color.lighterblue)
                                     HStack {
                                         Rectangle()
-                                            .frame(width: 196, height: 8)
-                                            .foregroundStyle(Color.lightblue)
+                                            .frame(width: 179, height: 4)
+                                            .foregroundStyle(Color.darkblue)
                                         Spacer()
                                     }
                                 }
                             }
+                            .padding(.horizontal, 22.0)
                             Spacer()
                                 .frame(height: 294.0)
                             }
