@@ -10,6 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     
     @State private var showProductsView = false
+    @EnvironmentObject private var wvm: WeatherViewModel
     
     var body: some View {
         
@@ -22,30 +23,34 @@ struct HeaderView: View {
                 Image("headerwaves")
                 Image("logo")
                     .padding(.top, 16)
-                Text("Ensolarado, 36º  |  Maré baixa")
-                    .foregroundStyle(Color.darkerblue)
-                    .font(.system(size: 14, design: .rounded))
                 
+                if let weather = wvm.weather {
+                    Text("\(weather.currentWeather.condition.description.capitalized), \(Int(weather.currentWeather.temperature.value))º  |  Maré baixa")
+                        .foregroundStyle(Color.darkerblue)
+                        .font(.system(size: 14, design: .rounded))
+                } else {
+                    Text("Carregando clima...")
+                        .foregroundStyle(Color.darkerblue)
+                        .font(.system(size: 14, design: .rounded))
+                        .task {
+                            print("Executando task para carregar o clima...")
+                            await wvm.showWeather()
+                        }
+                }
                 
                 HStack (spacing: 84) {
-                    
-                    
-                    
                     Button(action: { showProductsView = false
                     }, label: {
-                        
                         HStack {
                             Image("umbrellaicon")
                             Text("Barracas")
                                 .foregroundStyle(Color.darkblue)
                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                         }
-                        
                     })
                     
                     Button(action: { showProductsView = true
                     }, label: {
-                        
                         HStack {
                             Image("productsicon")
                             Text("Produtos")
@@ -56,17 +61,14 @@ struct HeaderView: View {
                 } .padding(.top, 32)
                 
                 ZStack {
-                    
                     Rectangle()
                         .frame(height: 8)
                         .foregroundStyle(Color.lighterblue)
                     
                     HStack {
-                        
                         Rectangle()
                             .frame(width: 196, height: 8)
                             .foregroundStyle(Color.lightblue)
-                        
                         Spacer()
                     }
                 }
@@ -75,15 +77,15 @@ struct HeaderView: View {
         } .ignoresSafeArea()
             .frame(height: 274)
         
-        
         if showProductsView {
             ProductsView()
         } else {
-                TentsView()
+            TentsView()
         }
     }
 }
 
 #Preview {
     HeaderView()
+        .environmentObject(WeatherViewModel())
 }
