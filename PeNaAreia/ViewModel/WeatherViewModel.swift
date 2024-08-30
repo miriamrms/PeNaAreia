@@ -10,25 +10,53 @@ import Foundation
 import CoreLocation
 import WeatherKit
 
+
 class WeatherViewModel: ObservableObject {
     
-    static let location = CLLocation(
-        latitude: -8.124624489201008, 
+    let location = CLLocation(
+        latitude: -8.124624489201008,
         longitude: -34.8971518
     )
     
     @Published var weather: Weather?
+    @Published var tideStatus: String = "..."
     
+    private let tideService = TideService()
+    
+    @MainActor
     func showWeather() async {
         do {
-            print("Tentando carregar o clima para a localização: \(Self.location.coordinate)")
-            let weather = try await WeatherService.shared.weather(for: Self.location)
-            DispatchQueue.main.async {
-                self.weather = weather
-                print("Clima carregado com sucesso: \(weather)")
-            }
+            weather = try await Task {
+                try await WeatherService.shared.weather(for: location)
+            }.value
         } catch {
             print("Erro ao carregar o clima: \(error)")
         }
     }
+    
+    func fetchTide() {
+        tideService.fetchTideData(lat: location.coordinate.latitude, lon: location.coordinate.longitude, radius: 50) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let tideResponse):
+                    if let latestTide = tideResponse.heights.last {
+                        self.tideStatus = latestTide.height > 1 ? "Maré alta" : "Maré baixa"
+                    }
+                case .failure(let error):
+                    print("Erro ao carregar os dados de maré: \(error)")
+                    self.tideStatus = "Erro ao carregar maré"
+                }
+            }
+        }
+    }
+    
+    func startAutoUpdate() {
+            Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
+                Task {
+                    await self.showWeather()
+                    self.fetchTide()
+                }
+            }
+        }
+    
 }

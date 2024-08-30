@@ -25,16 +25,18 @@ struct HeaderView: View {
                     .padding(.top, 16)
                 
                 if let weather = wvm.weather {
-                    Text("\(weather.currentWeather.condition.description.capitalized), \(Int(weather.currentWeather.temperature.value))º  |  Maré baixa")
+                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º  |  \(wvm.tideStatus)")
                         .foregroundStyle(Color.darkerblue)
                         .font(.system(size: 14, design: .rounded))
                 } else {
-                    Text("Carregando clima...")
+                    Text("...")
                         .foregroundStyle(Color.darkerblue)
                         .font(.system(size: 14, design: .rounded))
                         .task {
                             print("Executando task para carregar o clima...")
                             await wvm.showWeather()
+                            wvm.fetchTide()
+                            wvm.startAutoUpdate()
                         }
                 }
                 
