@@ -165,7 +165,7 @@ struct ProductDetailsView: View {
     }
 }
 
-
+//Lembrar de depois criar o struct que puxa a informação dos produtos
 
 
 #Preview {
