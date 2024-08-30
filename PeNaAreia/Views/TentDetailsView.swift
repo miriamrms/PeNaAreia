@@ -129,6 +129,7 @@ struct TentDetailsView: View {
                                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                                     }
                                 } .padding(.top, 30)
+                                
                                 ZStack {
                                     Rectangle()
                                         .frame(height: 4)

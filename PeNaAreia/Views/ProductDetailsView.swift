@@ -17,11 +17,13 @@ struct ProductDetailsView: View {
     ]
     
     var body: some View {
+        
         ZStack {
+            
             Image("productdetailsbackground")
                 .resizable()
                 .scaledToFill()
-            .ignoresSafeArea()
+                .ignoresSafeArea()
             
             
             VStack {
@@ -35,8 +37,6 @@ struct ProductDetailsView: View {
                 
                 HStack {
                     HStack {
-                        
-                        
                         Image(systemName: "magnifyingglass")
                             .padding(.leading, 8)
                             .foregroundStyle(Color.magnifyingglass)
@@ -64,103 +64,72 @@ struct ProductDetailsView: View {
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        ZStack {
-                            Image("bluerectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    }
-                                }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
-                            }
-                            .frame(width: 350, height: 50)
-                        }
                         
-                        ZStack {
-                            Image("sandrectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    }
-                                }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
-                            }
-                            .frame(width: 350, height: 50)
-                        }
+                        ProductCard(background: "bluerectangleproducts", name: "Barraca", price: "9,50")
+                        
+                        ProductCard(background: "sandrectangleproducts", name: "Barraca", price: "9,50")
                     }
                 }
             }
             .padding(.top, 40.0)
-            
-            
-
         }
+    }
+}
+
+struct ProductCard: View {
+    
+    var background: String
+    var name: String
+    var price: String
+    
+    var body: some View {
         
-        
+        ZStack {
+            Image("\(background)")
+                .resizable()
+                .frame(width: 350, height: 70)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("\(name)")
+                        .font(.system(size: 16))
+                        .fontDesign(.rounded)
+                        .fontWeight(.medium)
+                        .foregroundColor(Color.darkblue)
+                    Spacer()
+                    HStack (spacing: 0){
+                        Text("R$")
+                            .font(.system(size: 14))
+                            .fontDesign(.rounded)
+                            .fontWeight(.regular)
+                            .foregroundColor(Color.darkblue)
+                        
+                        Text("\(price)")
+                            .font(.system(size: 14))
+                            .fontDesign(.rounded)
+                            .fontWeight(.medium)
+                            .foregroundColor(Color.darkblue)
+                    }
+                }
+                .frame(width: 305)
+                
+                HStack (spacing: 2) {
+                    
+                    Image(systemName: "mappin")
+                        .foregroundColor(Color.darkblue)
+                        .imageScale(.small)
+                    
+                    Text("200m")
+                        .font(.system(size: 14))
+                        .fontDesign(.rounded)
+                        .fontWeight(.light)
+                        .foregroundColor(Color.darkblue)
+                    
+                } .padding(.leading, -2)
+                
+            }
+            .frame(width: 350, height: 50)
+        }
         
     }
 }
