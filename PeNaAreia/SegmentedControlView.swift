@@ -28,7 +28,7 @@ struct SegmentedControlView: View {
                                 Image(segments[index].iconName)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 20, height: 20) // Ajuste o tamanho conforme necessário
+                                    .frame(width: 20, height: 20)
                                     .foregroundColor(selectedSegment == index ? .darkblue : .darkblue)
                                 
                                 Text(segments[index].label)

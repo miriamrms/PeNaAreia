@@ -31,10 +31,10 @@
         }
       }
     },
-    "00,00" : {
+    "2,4km de distância" : {
 
     },
-    "2,4km de distância" : {
+    "200m" : {
 
     },
     "200m de distância" : {
@@ -46,12 +46,6 @@
           }
         }
       }
-    },
-    "Banheiro perto" : {
-
-    },
-    "Banho arriscado" : {
-
     },
     "Barraca do Tio" : {
       "localizations" : {
@@ -104,9 +98,6 @@
     "Comidas" : {
 
     },
-    "Distância da Barraca" : {
-
-    },
     "Lotação há 2min" : {
 
     },
@@ -135,12 +126,6 @@
         }
       }
     },
-    "Possui chuveiro" : {
-
-    },
-    "Preços elevados" : {
-
-    },
     "Procure por barracas" : {
 
     },
@@ -154,7 +139,7 @@
         }
       }
     },
-    "R$:" : {
+    "R$" : {
 
     },
     "rain" : {

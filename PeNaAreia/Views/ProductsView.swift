@@ -54,7 +54,7 @@ struct ProductsView: View {
                         
                     }
                 }
-            }  .background(.clear)
+            }  .background(Color.backgroundsand)
             .frame(width: 350)
     }
 }
