@@ -23,7 +23,6 @@ struct Tents{
     var toilet: Bool
     var averagePrice: String
     var capacity: String
-
 }
 
 enum TentsRecordKeys: String{
@@ -87,6 +86,7 @@ struct Products{
     let category: String
     let categoryImage: String
     var serving: Int
+    var tentReference: CKRecord.Reference?
 }
 
 enum ProductsRecordKeys: String{
@@ -97,6 +97,7 @@ enum ProductsRecordKeys: String{
     case category
     case categoryImage
     case serving
+    case tentReference
 }
 
 extension Products{
@@ -106,12 +107,13 @@ extension Products{
               let price = record[ProductsRecordKeys.price.rawValue] as? Double,
               let category = record[ProductsRecordKeys.category.rawValue] as? String,
               let categoryImage = record[ProductsRecordKeys.categoryImage.rawValue] as? String,
-              let serving = record[ProductsRecordKeys.serving.rawValue] as? Int
+              let serving = record[ProductsRecordKeys.serving.rawValue] as? Int,
+              let tentReference = record[ProductsRecordKeys.tentReference.rawValue] as? CKRecord.Reference
         else{
             return nil
         }
         //initializer
-        self.init(id: record.recordID, name: name, description: description, price: price, category: category, categoryImage: categoryImage, serving: serving)
+        self.init(id: record.recordID, name: name, description: description, price: price, category: category, categoryImage: categoryImage, serving: serving, tentReference: tentReference)
     }
 }
 
@@ -124,6 +126,9 @@ extension Products{
         record[ProductsRecordKeys.category.rawValue] = category
         record[ProductsRecordKeys.categoryImage.rawValue] = categoryImage
         record[ProductsRecordKeys.serving.rawValue] = serving
+        if let tentReference = tentReference {
+            record[ProductsRecordKeys.tentReference.rawValue] = tentReference
+        }
         return record
     }
 }

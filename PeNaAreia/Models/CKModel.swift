@@ -12,6 +12,7 @@ class CKModel: ObservableObject{
     
     var database = CKContainer.default().publicCloudDatabase
     @Published private var tentsDictionary: [CKRecord.ID: Tents] = [:]
+    @Published private var productsDictionary: [CKRecord.ID: Products] = [:]
     
     var tents: [Tents]{
         tentsDictionary.values.compactMap{$0}
@@ -31,6 +32,11 @@ class CKModel: ObservableObject{
         records.forEach{ record in
             tentsDictionary[record.recordID] = Tents(record: record)
         }
+    }
+    
+    func addProduct(product: Products) async throws{
+        _ = try await database.save(product.record)
+        
     }
     
 }
