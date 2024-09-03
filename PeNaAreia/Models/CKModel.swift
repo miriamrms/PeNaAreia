@@ -12,6 +12,7 @@ class CKModel: ObservableObject{
     
     var database = CKContainer.default().publicCloudDatabase
     @Published private var tentsDictionary: [CKRecord.ID: Tents] = [:]
+    @Published private var productsDictionary: [CKRecord.ID: Products] = [:]
     
     var tents: [Tents]{
         tentsDictionary.values.compactMap{$0}
