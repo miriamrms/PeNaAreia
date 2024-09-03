@@ -34,4 +34,9 @@ class CKModel: ObservableObject{
         }
     }
     
+    func addProduct(product: Products) async throws{
+        _ = try await database.save(product.record)
+        
+    }
+    
 }
