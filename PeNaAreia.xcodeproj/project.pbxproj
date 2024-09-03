@@ -79,7 +79,6 @@
 				6A96F5652C80C204001ABB21 /* Models */,
 				6AB4830B2C80A158009C8B9A /* ViewModel */,
 				6AB482FE2C7E0F47009C8B9A /* Views */,
-				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 				D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */,
 				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
 				B201DA382C81F04500464FAB /* ContentView.swift */,
@@ -113,6 +112,7 @@
 				6AB482FF2C7E0F7A009C8B9A /* HeaderView.swift */,
 				6AB483022C7E1C90009C8B9A /* TentsView.swift */,
 				6AB483062C7F4C94009C8B9A /* ProductsView.swift */,
+				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
