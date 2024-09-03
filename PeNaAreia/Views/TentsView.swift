@@ -37,7 +37,7 @@ struct TentsView: View {
                 } .padding(0)
             }
             
-        } .background(.clear)
+        } .background(Color.backgroundsand)
             .frame(width: 354)
     }
 }
