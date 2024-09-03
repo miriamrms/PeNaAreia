@@ -47,6 +47,9 @@
         }
       }
     },
+    "A lotação da %@ está:" : {
+
+    },
     "Barraca do Tio" : {
       "localizations" : {
         "pt-BR" : {
