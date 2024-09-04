@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TentsView: View {
+    @StateObject var ckModel = CKModel()
     
     let columns = [
         GridItem(.flexible()),
@@ -16,38 +18,54 @@ struct TentsView: View {
     
     var body: some View {
         
-        VStack {
-            
-            HStack {
-                
+        VStack{
+            HStack{
                 SearchBar(widthBar: 315, searchPrompt: "Procure por barracas")
-                
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
             } .padding(.bottom, 16)
-            
-            
-            
+
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(1...10, id: \.self) { i in
-                        TentCard()
+//                    NavigationStack{
+//                        ForEach(ckModel.tents, id: \.id){ tent in
+//                            TentCard(tent: tent)
+//                        }
+//                        .navigationDestination(for: tents) { name in
+//                            TentDetailsView(tent: name)
+//                        }
+//                    }
+                    ForEach(ckModel.tents, id: \.id){ tent in
+                        NavigationLink(destination: TentDetailsView(tent: tent)){
+                            TentCard(tent: tent)
+                        }
                     }
+                    
                 } .padding(0)
             }
-            
-        } .background(Color.backgroundsand)
-            .frame(width: 354)
+        } 
+        .background(Color.backgroundsand)
+        .frame(width: 354)
+        .task {
+            do{
+                try await ckModel.populateTents()
+            }
+            catch{
+                print(error)
+            }
+        }
     }
 }
 
-
 struct TentCard: View {
+    
+    let tent: Tents
+    
     var body: some View {
         ZStack{
             
-            Image("tentpreview")
+            Image(tent.image)
                 .resizable()
                 .scaledToFill()
             LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
@@ -56,7 +74,7 @@ struct TentCard: View {
                 
                 Spacer()
                 
-                Text("Barraca do Tio")
+                Text(tent.name)
                     .foregroundStyle(Color.white)
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
@@ -66,20 +84,21 @@ struct TentCard: View {
                 
                 
                 HStack {
-                    
-                    TentsIcons(iconName: "shower.fill")
-                    TentsIcons(iconName: "toilet.fill")
-                    TentsIcons(iconName: "figure.open.water.swim")
+                    Image(tent.shower ? "shower" : "noShower")
+                    Image(tent.toilet ? "toilet" : "noToilet")
+                    Image(tent.seaBath ? "swim" : "noSwim")
                     
                     Spacer()
                     
                     HStack (spacing: -2){
-                        
-                        TentsIcons(iconName: "person.fill")
-                        TentsIcons(iconName: "person.fill")
-                        TentsIcons(iconName: "person.fill")
-                        
+                        Image(systemName: "person.fill")
+                            .foregroundStyle(Color.white)
+                        Image(systemName: "person.fill")
+                            .foregroundStyle((tent.capacity == "Baixa") ? Color.magnifyingglass : Color.white)
+                        Image(systemName: "person.fill")
+                            .foregroundStyle((tent.capacity == "Alta") ? Color.white : Color.magnifyingglass)
                     }
+                    .imageScale(.small)
                 } .padding(.bottom, 8)
                     .padding(.top, 2)
                 
@@ -90,16 +109,14 @@ struct TentCard: View {
     }
 }
 
+
 struct TentsIcons: View {
-    
     var iconName: String
-    
     var body: some View {
         
         Image(systemName: "\(iconName)")
             .foregroundStyle(Color.white)
             .imageScale(.small)
-        
     }
 }
 

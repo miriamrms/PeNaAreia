@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TentDetailsView: View {
 
+    let tent: Tents
+
     @AppStorage("favTents") var favTents: [Int] = []
     
     var body: some View {
@@ -60,9 +62,9 @@ struct TentDetailsView: View {
                             
                             VStack {
                                 HStack (alignment: .center) {
-                                    Text("Nome da Barraca")
+                                    Text(tent.name)
                                         .font(.system(size: 34))
-                                        .frame(width: 280)
+                                        .frame(width: 280, alignment: .leading)
                                         .fontDesign(.rounded)
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.darkblue)
@@ -194,6 +196,6 @@ struct TentTags: View {
     }
 }
 
-#Preview {
-    TentDetailsView()
-}
+//#Preview {
+//    TentDetailsView()
+//}

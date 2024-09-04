@@ -10,11 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var wvm = WeatherViewModel()
     var body: some View {
-       HeaderView()
-            .environmentObject(wvm)
+        NavigationStack{
+            HeaderView()
+                .environmentObject(wvm)
+        }
     }
 }
 
 #Preview {
     ContentView()
 }
+
+
