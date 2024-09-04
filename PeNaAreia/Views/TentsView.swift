@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TentsView: View {
+    @StateObject var ckModel = CKModel()
     
     let columns = [
         GridItem(.flexible()),
@@ -31,23 +33,36 @@ struct TentsView: View {
             
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(1...10, id: \.self) { i in
-                        TentCard()
+//                    ForEach(1...10, id: \.self) { i in
+//                        TentCard()
+//                    }
+                    ForEach(ckModel.tents, id: \.id){ tent in
+                        tentCard(tent: tent)
                     }
                 } .padding(0)
             }
             
-        } .background(Color.backgroundsand)
-            .frame(width: 354)
+        } 
+        .background(Color.backgroundsand)
+        .frame(width: 354)
+        .task {
+            do{
+                try await ckModel.populateTents()
+            }
+            catch{
+                print(error)
+            }
+        }
+        
+        
     }
 }
 
-
-struct TentCard: View {
-    var body: some View {
+extension TentsView{
+    private func tentCard(tent: Tents) -> some View{
         ZStack{
             
-            Image("tentpreview")
+            Image(tent.image)
                 .resizable()
                 .scaledToFill()
             LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
@@ -56,7 +71,7 @@ struct TentCard: View {
                 
                 Spacer()
                 
-                Text("Barraca do Tio")
+                Text(tent.name)
                     .foregroundStyle(Color.white)
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
@@ -67,17 +82,17 @@ struct TentCard: View {
                 
                 HStack {
                     
-                    TentsIcons(iconName: "shower.fill")
-                    TentsIcons(iconName: "toilet.fill")
-                    TentsIcons(iconName: "figure.open.water.swim")
+                    TentsIcons(tent: tent, iconName: "shower.fill")
+                    TentsIcons(tent: tent, iconName: "toilet.fill")
+                    TentsIcons(tent: tent, iconName: "figure.open.water.swim")
                     
                     Spacer()
                     
                     HStack (spacing: -2){
                         
-                        TentsIcons(iconName: "person.fill")
-                        TentsIcons(iconName: "person.fill")
-                        TentsIcons(iconName: "person.fill")
+                        TentsIcons(tent: tent, iconName: "person.fill")
+                        TentsIcons(tent: tent, iconName: "person.fill")
+                        TentsIcons(tent: tent, iconName: "person.fill")
                         
                     }
                 } .padding(.bottom, 8)
@@ -90,8 +105,10 @@ struct TentCard: View {
     }
 }
 
+
 struct TentsIcons: View {
     
+    var tent: Tents
     var iconName: String
     
     var body: some View {
