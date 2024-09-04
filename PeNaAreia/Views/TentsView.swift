@@ -18,30 +18,32 @@ struct TentsView: View {
     
     var body: some View {
         
-        VStack {
-            
-            HStack {
-                
+        VStack{
+            HStack{
                 SearchBar(widthBar: 315, searchPrompt: "Procure por barracas")
-                
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
             } .padding(.bottom, 16)
-            
-            
-            
+
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-//                    ForEach(1...10, id: \.self) { i in
-//                        TentCard()
+//                    NavigationStack{
+//                        ForEach(ckModel.tents, id: \.id){ tent in
+//                            TentCard(tent: tent)
+//                        }
+//                        .navigationDestination(for: tents) { name in
+//                            TentDetailsView(tent: name)
+//                        }
 //                    }
                     ForEach(ckModel.tents, id: \.id){ tent in
-                        tentCard(tent: tent)
+                        NavigationLink(destination: TentDetailsView(tent: tent)){
+                            TentCard(tent: tent)
+                        }
                     }
+                    
                 } .padding(0)
             }
-            
         } 
         .background(Color.backgroundsand)
         .frame(width: 354)
@@ -53,13 +55,14 @@ struct TentsView: View {
                 print(error)
             }
         }
-        
-        
     }
 }
 
-extension TentsView{
-    private func tentCard(tent: Tents) -> some View{
+struct TentCard: View {
+    
+    let tent: Tents
+    
+    var body: some View {
         ZStack{
             
             Image(tent.image)
@@ -81,20 +84,21 @@ extension TentsView{
                 
                 
                 HStack {
-                    
-                    TentsIcons(tent: tent, iconName: "shower.fill")
-                    TentsIcons(tent: tent, iconName: "toilet.fill")
-                    TentsIcons(tent: tent, iconName: "figure.open.water.swim")
+                    Image(tent.shower ? "shower" : "noShower")
+                    Image(tent.toilet ? "toilet" : "noToilet")
+                    Image(tent.seaBath ? "swim" : "noSwim")
                     
                     Spacer()
                     
                     HStack (spacing: -2){
-                        
-                        TentsIcons(tent: tent, iconName: "person.fill")
-                        TentsIcons(tent: tent, iconName: "person.fill")
-                        TentsIcons(tent: tent, iconName: "person.fill")
-                        
+                        Image(systemName: "person.fill")
+                            .foregroundStyle(Color.white)
+                        Image(systemName: "person.fill")
+                            .foregroundStyle((tent.capacity == "Baixa") ? Color.magnifyingglass : Color.white)
+                        Image(systemName: "person.fill")
+                            .foregroundStyle((tent.capacity == "Alta") ? Color.white : Color.magnifyingglass)
                     }
+                    .imageScale(.small)
                 } .padding(.bottom, 8)
                     .padding(.top, 2)
                 
@@ -107,16 +111,12 @@ extension TentsView{
 
 
 struct TentsIcons: View {
-    
-    var tent: Tents
     var iconName: String
-    
     var body: some View {
         
         Image(systemName: "\(iconName)")
             .foregroundStyle(Color.white)
             .imageScale(.small)
-        
     }
 }
 
