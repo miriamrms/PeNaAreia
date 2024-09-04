@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct TentDetailsView: View {
+
     let tent: Tents
+
+    @AppStorage("favTents") var favTents: [Int] = []
+    
     var body: some View {
         ZStack {
             ZStack {
@@ -48,8 +52,12 @@ struct TentDetailsView: View {
                             
                             HStack {
                                 Spacer()
-                                Image("like.ic")
-                                    .padding(.trailing, 26.0)
+                                Button {
+                                    //TO DO algoritmo de favorito
+                                    
+                                } label: { Image("like.ic")
+                                        .padding(.trailing, 26.0)
+                                }
                             }
                             
                             VStack {
@@ -150,6 +158,10 @@ struct TentDetailsView: View {
                         
                         
                     }
+                }
+                .edgesIgnoringSafeArea(.bottom)
+                .onChange(of: favTents) { oldValue, newValue in
+                    print(favTents)
                 }
             }
             .edgesIgnoringSafeArea(.bottom)

@@ -24,6 +24,7 @@
 		B201DA392C81F04500464FAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201DA382C81F04500464FAB /* ContentView.swift */; };
 		B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */; };
 		B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */; };
+		D41A43DB2C85D69F0024A51A /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B201DA382C81F04500464FAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
+		D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				6A96F5652C80C204001ABB21 /* Models */,
 				6AB4830B2C80A158009C8B9A /* ViewModel */,
 				6AB482FE2C7E0F47009C8B9A /* Views */,
+				D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */,
 				B201DA382C81F04500464FAB /* ContentView.swift */,
 				B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */,
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
@@ -215,6 +218,7 @@
 				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */,
 				B201DA392C81F04500464FAB /* ContentView.swift in Sources */,
+				D41A43DB2C85D69F0024A51A /* ExtensionArray.swift in Sources */,
 				6AB483032C7E1C90009C8B9A /* TentsView.swift in Sources */,
 				6A96F5642C80C124001ABB21 /* TideViewModel.swift in Sources */,
 				B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */,
