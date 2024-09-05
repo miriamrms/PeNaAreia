@@ -1,4 +1,3 @@
-# PeNaAreia
 <br />
 <p align="center">
   <a href="https://github.com/miriamrms/PeNaAreia/blob/main/PeNaAreia/Assets.xcassets/AppIcon.appiconset/icon.png?raw=true">
@@ -31,3 +30,9 @@
 
  </tr>
  </table>
+
+ ### Built With
+
+- [ SwiftUI ](https://developer.apple.com/xcode/swiftui/)
+- [ CloudKit ](https://developer.apple.com/icloud/cloudkit/)
+- [ WetherKit ](https://developer.apple.com/weatherkit/)
