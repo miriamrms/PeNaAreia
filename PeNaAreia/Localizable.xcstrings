@@ -51,6 +51,7 @@
 
     },
     "Barraca do Tio" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -114,9 +115,6 @@
           }
         }
       }
-    },
-    "Nome da Barraca" : {
-
     },
     "partlyCloudy" : {
       "extractionState" : "manual",

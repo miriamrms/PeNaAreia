@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */; };
-		176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95662C7CB284004FB149 /* TentDetailsView.swift */; };
 		176E95692C7CB284004FB149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E95682C7CB284004FB149 /* Assets.xcassets */; };
 		176E956C2C7CB284004FB149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E956B2C7CB284004FB149 /* Preview Assets.xcassets */; };
 		176E95F12C85DA57004FB149 /* EntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95F02C85DA57004FB149 /* EntityModel.swift */; };
 		176E95F32C85DC91004FB149 /* CKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95F22C85DC91004FB149 /* CKModel.swift */; };
 		6A02684D2C8229C500B25308 /* CapacityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A02684C2C8229C500B25308 /* CapacityAlertView.swift */; };
+		6A8543592C89DC4B00FBD2F8 /* TentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8543582C89DC4B00FBD2F8 /* TentDetailsView.swift */; };
 		6A96F5642C80C124001ABB21 /* TideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96F5632C80C124001ABB21 /* TideViewModel.swift */; };
 		6A96F5672C80C217001ABB21 /* TideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96F5662C80C217001ABB21 /* TideModel.swift */; };
 		6A96F5692C81EAC6001ABB21 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6A96F5682C81EAC6001ABB21 /* Localizable.xcstrings */; };
@@ -30,12 +30,12 @@
 /* Begin PBXFileReference section */
 		176E95612C7CB284004FB149 /* PeNaAreia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeNaAreia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeNaAreiaApp.swift; sourceTree = "<group>"; };
-		176E95662C7CB284004FB149 /* TentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentDetailsView.swift; sourceTree = "<group>"; };
 		176E95682C7CB284004FB149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176E956B2C7CB284004FB149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		176E95F02C85DA57004FB149 /* EntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityModel.swift; sourceTree = "<group>"; };
 		176E95F22C85DC91004FB149 /* CKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKModel.swift; sourceTree = "<group>"; };
 		6A02684C2C8229C500B25308 /* CapacityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityAlertView.swift; sourceTree = "<group>"; };
+		6A8543582C89DC4B00FBD2F8 /* TentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentDetailsView.swift; sourceTree = "<group>"; };
 		6A96F5622C80B10E001ABB21 /* PeNaAreia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeNaAreia.entitlements; sourceTree = "<group>"; };
 		6A96F5632C80C124001ABB21 /* TideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideViewModel.swift; sourceTree = "<group>"; };
 		6A96F5662C80C217001ABB21 /* TideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideModel.swift; sourceTree = "<group>"; };
@@ -119,9 +119,9 @@
 				6AB482FF2C7E0F7A009C8B9A /* HeaderView.swift */,
 				6AB483022C7E1C90009C8B9A /* TentsView.swift */,
 				6AB483062C7F4C94009C8B9A /* ProductsView.swift */,
-				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
 				6A02684C2C8229C500B25308 /* CapacityAlertView.swift */,
+				6A8543582C89DC4B00FBD2F8 /* TentDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,15 +207,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8543592C89DC4B00FBD2F8 /* TentDetailsView.swift in Sources */,
 				176E95F12C85DA57004FB149 /* EntityModel.swift in Sources */,
 				B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */,
-				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
-				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				6A96F5672C80C217001ABB21 /* TideModel.swift in Sources */,
 				6AB4830D2C80A16C009C8B9A /* WeatherViewModel.swift in Sources */,
 				6AB483002C7E0F7A009C8B9A /* HeaderView.swift in Sources */,
 				176E95F32C85DC91004FB149 /* CKModel.swift in Sources */,
-				176E95672C7CB284004FB149 /* TentDetailsView.swift in Sources */,
 				176E95652C7CB284004FB149 /* PeNaAreiaApp.swift in Sources */,
 				B201DA392C81F04500464FAB /* ContentView.swift in Sources */,
 				D41A43DB2C85D69F0024A51A /* ExtensionArray.swift in Sources */,
