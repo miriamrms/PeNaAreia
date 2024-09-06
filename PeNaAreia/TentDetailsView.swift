@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct TentDetailsView: View {
+
+    let tent: Tents
+
+    @AppStorage("favTents") var favTents: [Int] = []
+    
     var body: some View {
         ZStack {
             ZStack {
@@ -31,7 +36,7 @@ struct TentDetailsView: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.top)
-
+                
                 
                 VStack(alignment: .center) {
                     Spacer()
@@ -41,41 +46,45 @@ struct TentDetailsView: View {
                             .scaledToFill()
                             .frame(height: 596.0)
                             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-//MARK: - Infos Barraca
-//Tudo abaixo da imagem da barraca
+                        //MARK: - Infos Barraca
+                        //Tudo abaixo da imagem da barraca
                         VStack {
                             
                             HStack {
                                 Spacer()
-                                Image("like.ic")
-                                    .padding(.trailing, 26.0)
+                                Button {
+                                    //TO DO algoritmo de favorito
+                                    
+                                } label: { Image("like.ic")
+                                        .padding(.trailing, 26.0)
+                                }
                             }
                             
                             VStack {
                                 HStack (alignment: .center) {
-                                        Text("Nome da Barraca")
-                                            .font(.system(size: 34))
-                                            .frame(width: 280)
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color.darkblue)
-                                        
+                                    Text(tent.name)
+                                        .font(.system(size: 34))
+                                        .frame(width: 280, alignment: .leading)
+                                        .fontDesign(.rounded)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.darkblue)
+                                    
                                     VStack (spacing:-3){
-                                            Image("lotacaoBaixa.ic")
-                                            
-                                            Text("Lotação há 2min")
-                                                .font(.system(size: 12))
-                                                .fontDesign(.rounded)
-                                                .fontWeight(.light)
-                                                .foregroundColor(Color.darkblue)
-                                        }
+                                        Image("lotacaoBaixa.ic")
+                                        
+                                        Text("Lotação há 2min")
+                                            .font(.system(size: 12))
+                                            .fontDesign(.rounded)
+                                            .fontWeight(.light)
+                                            .foregroundColor(Color.darkblue)
+                                    }
                                 }
                                 
                                 //localização
                                 HStack {
                                     Link(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=URL@*/URL(string: "https://www.apple.com")!/*@END_MENU_TOKEN@*/) {
-                                                                    Image(systemName: "map")
-                                                                    Text("2,4km de distância")
+                                        Image(systemName: "map")
+                                        Text("2,4km de distância")
                                             .underline()
                                             .font(.system(size: 16))
                                             .fontDesign(.rounded)
@@ -85,80 +94,26 @@ struct TentDetailsView: View {
                                     Spacer()
                                 }
                                 .padding(.leading)
-                            }
+                            } .padding(.bottom, 10)
                             
                             HStack{
                                 VStack {
                                     HStack {
-                                        ZStack {
-                                            
-                                            HStack(spacing: 4) {
-                                                //colocar chuveiro
-                                                Image("chuveiro.ic")
-                                                Text("Possui chuveiro")
-                                                    .font(.system(size: 14))
-                                                    .fontDesign(.rounded)
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.darkblue)
-                                                
-                                            }
-                                            .frame(width: 144.0, height: 29.0)
-                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
-                                            
-                                        }
                                         
-                                        ZStack {
-                                            HStack(spacing: 4) {
-                                                //colocar chuveiro
-                                                Image("banheiro.ic")
-                                                Text("Banheiro perto")
-                                                    .font(.system(size: 14))
-                                                    .fontDesign(.rounded)
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.darkblue)
-                                                
-                                            }
-                                            .frame(width: 144.0, height: 29.0)
-                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
-                                            
-                                        }
+                                        TentTags(icon: "chuveiro.ic", description: "Possui chuveiro")
+                                        
+                                        TentTags(icon: "banheiro.ic", description: "Banheiro perto")
                                         
                                     }
                                     
                                     HStack {
-                                        ZStack {
-                                            
-                                            HStack(spacing: 4) {
-                                                Image("dinheiro.ic")
-                                                Text("Preços elevados")
-                                                    .font(.system(size: 14))
-                                                    .fontDesign(.rounded)
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.darkblue)
-                                                
-                                            }
-                                            .frame(width: 144.0, height: 29.0)
-                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
-                                            
-                                        }
                                         
-                                        ZStack {
-                                            HStack(spacing: 4) {
-                                                Image("riscodebanho.ic")
-                                                Text("Banho arriscado")
-                                                    .font(.system(size: 14))
-                                                    .fontDesign(.rounded)
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.darkblue)
-                                                
-                                            }
-                                            .frame(width: 144.0, height: 29.0)
-                                            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
-                                            
-                                        }
+                                        TentTags(icon: "dinheiro.ic", description: "Valores altos")
+                                        
+                                        TentTags(icon: "riscodebanho.ic", description: "Banho arriscado")
                                         
                                     }
-
+                                    
                                 }
                                 Spacer()
                             }
@@ -183,6 +138,7 @@ struct TentDetailsView: View {
                                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                                     }
                                 } .padding(.top, 30)
+                                
                                 ZStack {
                                     Rectangle()
                                         .frame(height: 4)
@@ -198,18 +154,48 @@ struct TentDetailsView: View {
                             .padding(.horizontal, 22.0)
                             Spacer()
                                 .frame(height: 294.0)
-                            }
-                        
-                        
                         }
+                        
+                        
                     }
                 }
                 .edgesIgnoringSafeArea(.bottom)
+                .onChange(of: favTents) { oldValue, newValue in
+                    print(favTents)
+                }
             }
+            .edgesIgnoringSafeArea(.bottom)
+        }
+        
+    }
+}
+
+struct TentTags: View {
+    
+    var icon: String
+    var description: String
+    
+    var body: some View {
+        
+        ZStack {
+            
+            HStack(spacing: 4) {
+                Image("\(icon)")
+                Text("\(description)")
+                    .font(.system(size: 14))
+                    .fontDesign(.rounded)
+                    .fontWeight(.regular)
+                    .foregroundColor(Color.mediumblue)
+                
+            }
+            
+            .frame(width: 144.0, height: 29.0)
+            .background(RoundedRectangle(cornerRadius: 15).fill(Color.lighterblue))
             
         }
     }
-
-#Preview {
-    TentDetailsView()
 }
+
+//#Preview {
+//    TentDetailsView()
+//}

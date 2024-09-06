@@ -31,10 +31,10 @@
         }
       }
     },
-    "2,4km de distância" : {
+    "00,00" : {
 
     },
-    "200m" : {
+    "2,4km de distância" : {
 
     },
     "200m de distância" : {
@@ -102,6 +102,9 @@
     "Comidas" : {
 
     },
+    "Distância da Barraca" : {
+
+    },
     "Lotação há 2min" : {
 
     },
@@ -115,6 +118,9 @@
           }
         }
       }
+    },
+    "Nome da Barraca" : {
+
     },
     "partlyCloudy" : {
       "extractionState" : "manual",
@@ -140,7 +146,7 @@
         }
       }
     },
-    "R$" : {
+    "R$:" : {
 
     },
     "rain" : {
