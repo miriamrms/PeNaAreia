@@ -11,7 +11,7 @@ struct TentDetailsView: View {
 
     let tent: Tents
 
-    @AppStorage("favTents") var favTents: [Int] = []
+    @AppStorage("favTents") var favTents: [String] = []
     
     var body: some View {
         ZStack {
@@ -53,10 +53,23 @@ struct TentDetailsView: View {
                             HStack {
                                 Spacer()
                                 Button {
-                                    //TO DO algoritmo de favorito
-                                    
-                                } label: { Image("like.ic")
-                                        .padding(.trailing, 26.0)
+                                    toggleFav(tent: tent)
+                                } label: {
+                                    ZStack {
+                                        Image("Vector")
+                                            .resizable()
+                                            .frame(width: /*@START_MENU_TOKEN@*/45.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/39.0/*@END_MENU_TOKEN@*/)
+                                            .foregroundColor(.white)
+                                        
+                                            .padding(.trailing, 27.0)
+                                            .padding(.bottom, 8.0)
+                                        Image(systemName: isFav(tent: tent) ? "heart.fill" : "heart")
+                                            .resizable()
+                                            .frame(width: /*@START_MENU_TOKEN@*/32.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/27.0/*@END_MENU_TOKEN@*/)
+                                            .padding(.trailing, 27.0)
+                                            .padding(.bottom, 8.0)
+                                            .foregroundColor(isFav(tent: tent) ? .red : .darkerblue)
+                                    }
                                 }
                             }
                             
@@ -160,14 +173,23 @@ struct TentDetailsView: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.bottom)
-                .onChange(of: favTents) { oldValue, newValue in
-                    print(favTents)
-                }
+                
             }
             .edgesIgnoringSafeArea(.bottom)
         }
         
     }
+    func isFav(tent: Tents) -> Bool {
+            return favTents.contains(tent.name)
+        }
+        func toggleFav(tent: Tents) {
+            if let index = favTents.firstIndex(of: tent.name) {
+                favTents.remove(at: index)
+            } else {
+                favTents.append(tent.name)
+            }
+        }
+        
 }
 
 struct TentTags: View {
@@ -197,5 +219,18 @@ struct TentTags: View {
 }
 
 //#Preview {
-//    TentDetailsView()
+//    TentDetailsView(
+//        tent: Tents(
+//            id: nil,
+//            name: "Nome",
+//            image: "Nome",
+//            linkMap: "Nome",
+//            coordinates: nil,
+//            seaBath: false,
+//            shower: false,
+//            toilet: false,
+//            averagePrice: "3",
+//            capacity: "2"
+//        )
+//    )
 //}
