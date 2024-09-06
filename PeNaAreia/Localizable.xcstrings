@@ -31,6 +31,12 @@
         }
       }
     },
+    "2,4km de distância" : {
+
+    },
+    "200m" : {
+
+    },
     "200m de distância" : {
       "localizations" : {
         "pt-BR" : {
@@ -41,7 +47,11 @@
         }
       }
     },
+    "A lotação da %@ está:" : {
+
+    },
     "Barraca do Tio" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -60,6 +70,12 @@
           }
         }
       }
+    },
+    "Batata-frita" : {
+
+    },
+    "Bebidas" : {
+
     },
     "clear" : {
       "extractionState" : "manual",
@@ -83,6 +99,12 @@
         }
       }
     },
+    "Comidas" : {
+
+    },
+    "Lotação há 2min" : {
+
+    },
     "mostlyCloudly" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105,6 +127,9 @@
         }
       }
     },
+    "Procure por barracas" : {
+
+    },
     "Produtos" : {
       "localizations" : {
         "pt-BR" : {
@@ -114,6 +139,9 @@
           }
         }
       }
+    },
+    "R$" : {
+
     },
     "rain" : {
       "extractionState" : "manual",

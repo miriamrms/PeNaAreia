@@ -11,7 +11,7 @@ struct TideService {
     let apiKey = "0170bd2b-4a1f-427e-884a-927795a64818"
     
     func fetchTideData(lat: Double, lon: Double, radius: Int, completion: @escaping (Result<TideResponse, Error>) -> Void) {
-        let urlString = "https://www.worldtides.info/api/v2?heights&lat=-8.124624489201008&&lon=-34.8971518&radius=20&key=\(apiKey)"
+        let urlString = "https://www.worldtides.info/api/v2?heights&lat=-8.124624489201008&&lon=-34.8971518&radius=10&key=\(apiKey)"
         
         guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
