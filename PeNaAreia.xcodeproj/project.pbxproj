@@ -25,6 +25,7 @@
 		D41A43DB2C85D69F0024A51A /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */; };
 		D41A43E02C8B25AA0024A51A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201DA382C81F04500464FAB /* ContentView.swift */; };
 		D41A43E12C8B25BC0024A51A /* TentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95662C7CB284004FB149 /* TentDetailsView.swift */; };
+		D41A43E32C8B38380024A51A /* TentsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A43E22C8B38380024A51A /* TentsFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
 		D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
+		D41A43E22C8B38380024A51A /* TentsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentsFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
 				D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */,
+				D41A43E22C8B38380024A51A /* TentsFilter.swift */,
 				B201DA382C81F04500464FAB /* ContentView.swift */,
 				B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */,
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41A43E32C8B38380024A51A /* TentsFilter.swift in Sources */,
 				D41A43E12C8B25BC0024A51A /* TentDetailsView.swift in Sources */,
 				D41A43E02C8B25AA0024A51A /* ContentView.swift in Sources */,
 				B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */,

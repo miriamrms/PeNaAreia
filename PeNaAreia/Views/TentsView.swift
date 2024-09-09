@@ -9,7 +9,10 @@ import SwiftUI
 import CoreLocation
 
 struct TentsView: View {
+    
     @StateObject var ckModel = CKModel()
+    
+    @State private var selectedTentFilter: TentsFilter?
     
     let columns = [
         GridItem(.flexible()),
@@ -21,9 +24,19 @@ struct TentsView: View {
         VStack{
             HStack{
                 SearchBar(widthBar: 315, searchPrompt: "Procure por barracas")
-                Image(systemName: "line.3.horizontal.decrease.circle")
+                Menu {
+                    
+                    Picker("teste", selection: $selectedTentFilter) {
+                        ForEach(TentsFilter.allCases, id: \.self) {
+                            tentFilter in Text(tentFilter.rawValue).tag(tentFilter as TentsFilter?)
+                        }
+                    }
+                }
+                label: { Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
+                }
+                
             } .padding(.bottom, 16)
 
             ScrollView {
@@ -36,7 +49,7 @@ struct TentsView: View {
 //                            TentDetailsView(tent: name)
 //                        }
 //                    }
-                    ForEach(ckModel.tents, id: \.id){ tent in
+                    ForEach(ckModel.tents.filter(componentFilterFunction), id: \.id){ tent in
                         NavigationLink(destination: TentDetailsView(tent: tent)){
                             TentCard(tent: tent)
                         }
@@ -54,6 +67,30 @@ struct TentsView: View {
             catch{
                 print(error)
             }
+        }
+    }
+    func componentFilterFunction(tent: Tents) -> Bool {
+        switch selectedTentFilter {
+        case .toilet:
+            return tent.toilet
+        case .shower:
+            return tent.shower
+        case .lowPrice:
+            return tent.averagePrice == "Baixo"
+        case .midPrice:
+            return tent.averagePrice == "Médio"
+        case .highPrice:
+            return tent.averagePrice == "Alto"
+        case .lowCapacity:
+            return tent.capacity == "Baixa"
+        case .midCapacity:
+            return tent.capacity == "Média"
+        case .highCapacity:
+            return tent.capacity == "Alta"
+        case .seaBath:
+            return tent.seaBath
+        case nil:
+            return true
         }
     }
 }
