@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     
+    @StateObject var ckModel = CKModel()
     @State private var searchText = ""
     
     let columns = [
@@ -35,8 +36,6 @@ struct ProductDetailsView: View {
                 
                 HStack {
                     HStack {
-                        
-                        
                         Image(systemName: "magnifyingglass")
                             .padding(.leading, 8)
                             .foregroundStyle(Color.magnifyingglass)
@@ -64,93 +63,55 @@ struct ProductDetailsView: View {
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        ZStack {
-                            Image("bluerectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
+                        ForEach(ckModel.products, id: \.id){ product in
+                            ZStack {
+                                Image("bluerectangleproducts")
+                                    .resizable()
+                                .frame(width: 350, height: 70)
+                                
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(product.name)
+                                            .font(.system(size: 16))
                                             .fontDesign(.rounded)
                                             .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
+                                            .foregroundColor(Color.darkblue)
+                                        Spacer()
+                                        HStack (spacing: 0){
+                                            
+                                            Text(String(format: "R$%.02f", product.price))
+                                                .font(.system(size: 14))
+                                                .fontDesign(.rounded)
+                                                .fontWeight(.medium)
+                                            .foregroundColor(Color.darkblue)
+                                        }
+                                    }
+                                    .frame(width: 305
+                                    )
+                                    
+                                    HStack (spacing: 0){
+                                        Image(systemName: "mappin")
+                                            .foregroundColor(Color.darkblue)
+                                        
+                                        Text("200m | ")
+                                            .font(.system(size: 14))
+                                            .fontDesign(.rounded)
+                                            .fontWeight(.light)
+                                            .foregroundColor(Color.darkblue)
                                     }
                                 }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
+                                .frame(width: 350, height: 50)
                             }
-                            .frame(width: 350, height: 50)
                         }
                         
-                        ZStack {
-                            Image("sandrectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    }
-                                }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
-                            }
-                            .frame(width: 350, height: 50)
-                        }
+                    }
+                }
+                .task {
+                    do{
+                        try await ckModel.populateProducts()
+                    }
+                    catch{
+                        print(error)
                     }
                 }
             }
