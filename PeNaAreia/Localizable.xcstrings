@@ -31,10 +31,10 @@
         }
       }
     },
-    "00,00" : {
+    "2,4km de distância" : {
 
     },
-    "2,4km de distância" : {
+    "200m | " : {
 
     },
     "200m de distância" : {
@@ -71,9 +71,6 @@
         }
       }
     },
-    "Batata-frita" : {
-
-    },
     "Bebidas" : {
 
     },
@@ -102,9 +99,6 @@
     "Comidas" : {
 
     },
-    "Distância da Barraca" : {
-
-    },
     "Lotação há 2min" : {
 
     },
@@ -119,9 +113,6 @@
         }
       }
     },
-    "Nome da Barraca" : {
-
-    },
     "partlyCloudy" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -133,7 +124,7 @@
         }
       }
     },
-    "Procure por barracas" : {
+    "Procure por produtos" : {
 
     },
     "Produtos" : {
@@ -145,9 +136,6 @@
           }
         }
       }
-    },
-    "R$:" : {
-
     },
     "rain" : {
       "extractionState" : "manual",
