@@ -12,6 +12,7 @@
 		176E956C2C7CB284004FB149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E956B2C7CB284004FB149 /* Preview Assets.xcassets */; };
 		176E95F12C85DA57004FB149 /* EntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95F02C85DA57004FB149 /* EntityModel.swift */; };
 		176E95F32C85DC91004FB149 /* CKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95F22C85DC91004FB149 /* CKModel.swift */; };
+		176E96132C908339004FB149 /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E96122C908339004FB149 /* DistanceViewModel.swift */; };
 		6A02684D2C8229C500B25308 /* CapacityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A02684C2C8229C500B25308 /* CapacityAlertView.swift */; };
 		6A96F5642C80C124001ABB21 /* TideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96F5632C80C124001ABB21 /* TideViewModel.swift */; };
 		6A96F5672C80C217001ABB21 /* TideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96F5662C80C217001ABB21 /* TideModel.swift */; };
@@ -37,6 +38,7 @@
 		176E956B2C7CB284004FB149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		176E95F02C85DA57004FB149 /* EntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityModel.swift; sourceTree = "<group>"; };
 		176E95F22C85DC91004FB149 /* CKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKModel.swift; sourceTree = "<group>"; };
+		176E96122C908339004FB149 /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 		6A02684C2C8229C500B25308 /* CapacityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityAlertView.swift; sourceTree = "<group>"; };
 		6A96F5622C80B10E001ABB21 /* PeNaAreia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeNaAreia.entitlements; sourceTree = "<group>"; };
 		6A96F5632C80C124001ABB21 /* TideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideViewModel.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				6AB4830C2C80A16C009C8B9A /* WeatherViewModel.swift */,
 				6A96F5632C80C124001ABB21 /* TideViewModel.swift */,
+				176E96122C908339004FB149 /* DistanceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				6AB483032C7E1C90009C8B9A /* TentsView.swift in Sources */,
 				6A96F5642C80C124001ABB21 /* TideViewModel.swift in Sources */,
 				B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */,
+				176E96132C908339004FB149 /* DistanceViewModel.swift in Sources */,
 				6AB483072C7F4C94009C8B9A /* ProductsView.swift in Sources */,
 				6A02684D2C8229C500B25308 /* CapacityAlertView.swift in Sources */,
 			);
@@ -364,7 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeNaAreia/Preview Content\"";
-				DEVELOPMENT_TEAM = BARBXFGN2B;
+				DEVELOPMENT_TEAM = 57YNQZ8RV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pé na Areia";
@@ -396,7 +400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeNaAreia/Preview Content\"";
-				DEVELOPMENT_TEAM = BARBXFGN2B;
+				DEVELOPMENT_TEAM = 57YNQZ8RV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pé na Areia";
