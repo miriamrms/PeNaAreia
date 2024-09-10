@@ -12,6 +12,7 @@ struct ProductDetailsView: View {
     @StateObject var ckModel = CKModel()
     @State var order = "asc"
     @State private var searchText = ""
+    var foodText: String
     
     @State private var selectedProductsFilter: ProductsFilter?
     
@@ -42,7 +43,7 @@ struct ProductDetailsView: View {
                         Image(systemName: "magnifyingglass")
                             .padding(.leading, 8)
                             .foregroundStyle(Color.magnifyingglass)
-                        TextField("Procure por barracas", text: $searchText)
+                        TextField("Procure por produtos", text: $searchText)
                     }
                     .frame(width: 353, height: 36)
                     .background(Color.searchbar)
@@ -52,7 +53,7 @@ struct ProductDetailsView: View {
                 .padding(.bottom, 24.0)
                 
                 HStack {
-                    Text("Batata-frita")
+                    Text(foodText)
                         .font(.system(size: 24))
                         .fontDesign(.rounded)
                         .fontWeight(.semibold)
@@ -76,11 +77,17 @@ struct ProductDetailsView: View {
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        ForEach(ckModel.products.sorted(by: { product1, product2 in
-                            if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo") {
-                                product1.price >= product2.price
-                            } else {
-                                product1.price <= product2.price
+                        //ForEach(ckModel.products.sorted(by: { product1, product2 in
+                          //  if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo") {
+                            //    product1.price >= product2.price
+                            //} else {
+                              //  product1.price <= product2.price
+                        ForEach(ckModel.products.filter({ product in
+                            if product.category == foodText{
+                                return true
+                            }
+                            else{
+                                return false
                             }
                         }), id: \.id){ product in
                             ZStack {
@@ -160,5 +167,5 @@ struct ProductDetailsView: View {
 
 
 #Preview {
-    ProductDetailsView()
+    ProductDetailsView(foodText: "Batata-Frita")
 }
