@@ -18,7 +18,7 @@ struct TentsView: View {
     @State var searchIsActive: Bool = false
     
     var filteredAndSearchTents: [Tents] {
-        if selectedTentFilter != nil { //filtrou, depois digitou ou não
+        if selectedTentFilter != nil {
             let tentsFiltered = ckModel.tents.filter(componentFilterFunction)
             return !searchText.isEmpty ?
             tentsFiltered.filter({$0.name.contains(searchText)})
@@ -66,14 +66,14 @@ struct TentsView: View {
                             let meters = Int(distanceInMeters) % 1000
                             let distance = (kilometers == 0) ? "\(meters)m" : "\(kilometers)km e \(meters)m"
                             
-                            NavigationLink(destination: TentDetailsView(tent: tent)){
+                            NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: true, distance: distance)){
                                 TentCard(tent: tent, isLocationAutorized: true, distance: distance)
                             }
                         }
                     }
                     else{
                         ForEach(filteredAndSearchTents, id: \.id){ tent in
-                            NavigationLink(destination: TentDetailsView(tent: tent)){
+                            NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: false, distance: "")){
                                 TentCard(tent: tent, isLocationAutorized: false, distance: "")
                             }
                         }

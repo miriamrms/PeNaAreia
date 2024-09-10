@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TentDetailsView: View {
 
     let tent: Tents
+    let isLocationAutorized: Bool
+    let distance: String
 
     @AppStorage("favTents") var favTents: [String] = []
     
@@ -83,7 +86,15 @@ struct TentDetailsView: View {
                                         .foregroundColor(Color.darkblue)
                                     
                                     VStack (spacing:-3){
-                                        Image("lotacaoBaixa.ic")
+                                        if tent.capacity == "Alta"{
+                                            Image("lotacaoAlta.ic")
+                                        }
+                                        else if tent.capacity == "Média"{
+                                            Image("lotacaoMedia.ic")
+                                        }
+                                        else{
+                                            Image("lotacaoBaixa.ic")
+                                        }
                                         
                                         Text("Lotação há 2min")
                                             .font(.system(size: 12))
@@ -95,9 +106,9 @@ struct TentDetailsView: View {
                                 
                                 //localização
                                 HStack {
-                                    Link(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=URL@*/URL(string: "https://www.apple.com")!/*@END_MENU_TOKEN@*/) {
+                                    Link(destination: URL(string: tent.linkMap)!) {
                                         Image(systemName: "map")
-                                        Text("2,4km de distância")
+                                        Text(isLocationAutorized ? "\(distance) de distância" : "Veja a localização")
                                             .underline()
                                             .font(.system(size: 16))
                                             .fontDesign(.rounded)
@@ -113,17 +124,25 @@ struct TentDetailsView: View {
                                 VStack {
                                     HStack {
                                         
-                                        TentTags(icon: "chuveiro.ic", description: "Possui chuveiro")
+                                        TentTags(icon: tent.shower ? "chuveiro.ic" : "tentnoshower", description: tent.shower ? "Possui chuveiro" : "Sem chuveiro")
                                         
-                                        TentTags(icon: "banheiro.ic", description: "Banheiro perto")
+                                        TentTags(icon: tent.toilet ? "banheiro.ic" : "tentnotoilet", description: tent.toilet ? "Banheiro perto" : "Banheiro longe")
                                         
                                     }
                                     
                                     HStack {
                                         
-                                        TentTags(icon: "dinheiro.ic", description: "Valores altos")
+                                        if tent.averagePrice == "Alto"{
+                                            TentTags(icon: "dinheiro.ic", description: "Valores altos")
+                                        }
+                                        else if tent.averagePrice == "Médio"{
+                                            TentTags(icon: "dinheiro.ic", description: "Valores médios")
+                                        }
+                                        else{
+                                            TentTags(icon: "dinheiro.ic", description: "Valores baixos")
+                                        }
                                         
-                                        TentTags(icon: "riscodebanho.ic", description: "Banho arriscado")
+                                        TentTags(icon: tent.seaBath ? "tentsafeswim" : "riscodebanho.ic", description: tent.seaBath ? "Banho seguro" : "Banho arriscado")
                                         
                                     }
                                     
@@ -218,19 +237,19 @@ struct TentTags: View {
     }
 }
 
-//#Preview {
-//    TentDetailsView(
-//        tent: Tents(
-//            id: nil,
-//            name: "Nome",
-//            image: "Nome",
-//            linkMap: "Nome",
-//            coordinates: nil,
-//            seaBath: false,
-//            shower: false,
-//            toilet: false,
-//            averagePrice: "3",
-//            capacity: "2"
-//        )
-//    )
-//}
+#Preview {
+    TentDetailsView(
+        tent: Tents(
+            id: nil,
+            name: "Nome",
+            image: "Nome",
+            linkMap: "Nome",
+            coordinates: CLLocation(latitude: -4, longitude: -4),
+            seaBath: true,
+            shower: false,
+            toilet: false,
+            averagePrice: "3",
+            capacity: "Média"
+        )
+    , isLocationAutorized: true, distance: "54m")
+}
