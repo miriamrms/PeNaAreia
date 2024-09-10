@@ -10,8 +10,11 @@ import SwiftUI
 struct ProductDetailsView: View {
     
     @StateObject var ckModel = CKModel()
+    @State var order = "asc"
     @State private var searchText = ""
     var foodText: String
+    
+    @State private var selectedProductsFilter: ProductsFilter?
     
     let columns = [
         GridItem(.flexible()),
@@ -57,13 +60,28 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.backgroundsand)
                     
                     Spacer()
-                    Image(systemName: "line.3.horizontal.decrease.circle")
+                    
+                    Menu {
+                        
+                        Picker("teste", selection: $selectedProductsFilter) {
+                            ForEach(ProductsFilter.allCases, id: \.self) {
+                                productFilter in Text(productFilter.rawValue).tag(productFilter as ProductsFilter?)
+                            }
+                        }
+                    }
+                    label: { Image(systemName: "line.3.horizontal.decrease.circle")
                         .imageScale(.large)
                         .foregroundStyle(Color.backgroundsand)
+                    }
                 }
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
+                        //ForEach(ckModel.products.sorted(by: { product1, product2 in
+                          //  if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo") {
+                            //    product1.price >= product2.price
+                            //} else {
+                              //  product1.price <= product2.price
                         ForEach(ckModel.products.filter({ product in
                             if product.category == foodText{
                                 return true
@@ -132,6 +150,17 @@ struct ProductDetailsView: View {
         
         
     }
+    
+//    func productFilterFunction(product: Products) -> Bool {
+//        switch selectedProductsFilter {
+//        case .lowPrice:
+//            return product.averagePrice == "Baixo"
+//        case .highPrice:
+//            return product.averagePrice == "Alto"
+//        case nil:
+//            return true
+//        }
+//    }
 }
 
 //Lembrar de depois criar o struct que puxa a informação dos produtos
