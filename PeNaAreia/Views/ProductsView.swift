@@ -15,11 +15,6 @@ struct ProductsView: View {
     ]
     
     var body: some View {
-        
-            
-//            SearchBar(widthBar: 350, searchPrompt: "Procure por produtos")
-//            .padding(.top, -3)
-            
             ScrollView {
                 
                 VStack (alignment: .leading)  {

@@ -38,6 +38,7 @@
 
     },
     "200m de distância" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -123,6 +124,9 @@
           }
         }
       }
+    },
+    "Procure por barracas" : {
+
     },
     "Procure por produtos" : {
 
