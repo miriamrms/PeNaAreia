@@ -30,8 +30,8 @@ struct ProductsView: View {
                     
                     
                     LazyVGrid(columns: columns, spacing: 20) {
-                        NavigationLink(destination: ProductDetailsView(foodText: "Batatas-fritas")) {
-                                      ProductItem(backgroundImage: "productsand", foodImage: "fries", foodText: "Batatas-fritas", offset: -10)
+                        NavigationLink(destination: ProductDetailsView(foodText: "Batatas fritas")) {
+                                      ProductItem(backgroundImage: "productsand", foodImage: "fries", foodText: "Batatas fritas", offset: -10)
                                     }
                         NavigationLink(destination: ProductDetailsView(foodText: "Espetinhos")) {
                           ProductItem(backgroundImage: "productblue", foodImage: "barbecue", foodText: "Espetinhos", offset: -14)
