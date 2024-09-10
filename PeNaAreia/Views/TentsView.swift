@@ -9,7 +9,27 @@ import SwiftUI
 import CoreLocation
 
 struct TentsView: View {
+    
     @StateObject var ckModel = CKModel()
+    
+    @State private var selectedTentFilter: TentsFilter?
+    
+    @State var searchText: String = ""
+    @State var searchIsActive: Bool = false
+    
+    var filteredAndSearchTents: [Tents] {
+        if selectedTentFilter != nil { //filtrou, depois digitou ou não
+            let tentsFiltered = ckModel.tents.filter(componentFilterFunction)
+            return !searchText.isEmpty ?
+            tentsFiltered.filter({$0.name.contains(searchText)})
+            : tentsFiltered
+        }
+        else { //não colocou o filtro
+            return !searchText.isEmpty ?
+            ckModel.tents.filter({$0.name.contains(searchText)})
+            : ckModel.tents
+        }
+    }
     
     let columns = [
         GridItem(.flexible()),
@@ -18,25 +38,30 @@ struct TentsView: View {
     
     var body: some View {
         
-        VStack{
+        VStack {
             HStack{
-                SearchBar(widthBar: 315, searchPrompt: "Procure por barracas")
-                Image(systemName: "line.3.horizontal.decrease.circle")
+                SearchBar
+                
+                
+                Menu {
+                    //lógica de atualizar tela do filtro
+                    Picker("teste", selection: $selectedTentFilter) {
+                        ForEach(TentsFilter.allCases, id: \.self) {
+                            tentFilter in Text(tentFilter.rawValue).tag(tentFilter as TentsFilter?)
+                        }
+                    }
+                }
+            label: { Image(systemName: "line.3.horizontal.decrease.circle")
                     .imageScale(.large)
                     .foregroundStyle(Color.darkerblue)
+            }
+                
             } .padding(.bottom, 16)
-
+            
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-//                    NavigationStack{
-//                        ForEach(ckModel.tents, id: \.id){ tent in
-//                            TentCard(tent: tent)
-//                        }
-//                        .navigationDestination(for: tents) { name in
-//                            TentDetailsView(tent: name)
-//                        }
-//                    }
-                    ForEach(ckModel.tents, id: \.id){ tent in
+                    
+                    ForEach(filteredAndSearchTents, id: \.id){ tent in
                         NavigationLink(destination: TentDetailsView(tent: tent)){
                             TentCard(tent: tent)
                         }
@@ -44,7 +69,7 @@ struct TentsView: View {
                     
                 } .padding(0)
             }
-        } 
+        }
         .background(Color.backgroundsand)
         .frame(width: 354)
         .task {
@@ -56,6 +81,50 @@ struct TentsView: View {
             }
         }
     }
+    
+    func componentFilterFunction(tent: Tents) -> Bool {
+        switch selectedTentFilter {
+        case .toilet:
+            return tent.toilet
+        case .shower:
+            return tent.shower
+        case .lowPrice:
+            return tent.averagePrice == "Baixo"
+        case .midPrice:
+            return tent.averagePrice == "Médio"
+        case .highPrice:
+            return tent.averagePrice == "Alto"
+        case .lowCapacity:
+            return tent.capacity == "Baixa"
+        case .midCapacity:
+            return tent.capacity == "Média"
+        case .highCapacity:
+            return tent.capacity == "Alta"
+        case .seaBath:
+            return tent.seaBath
+        case nil:
+            return true
+        }
+    }
+    
+    private var SearchBar: some View {
+        
+        // ligada (State/Binding) com a TentViews
+        
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .padding(.leading, 8)
+                .foregroundStyle(Color.magnifyingglass)
+            TextField("Procure por barracas", text: $searchText)
+        }
+        .frame(width: 315, height: 36)
+        .background(Color.searchbar)
+        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+        
+    }
+    
+    //funcao de busca -> atualizar a tentViews
+    
 }
 
 struct TentCard: View {
@@ -109,7 +178,6 @@ struct TentCard: View {
     }
 }
 
-
 struct TentsIcons: View {
     var iconName: String
     var body: some View {
@@ -117,27 +185,6 @@ struct TentsIcons: View {
         Image(systemName: "\(iconName)")
             .foregroundStyle(Color.white)
             .imageScale(.small)
-    }
-}
-
-struct SearchBar: View {
-    
-    @State private var searchText = ""
-    var widthBar: CGFloat
-    var searchPrompt: String
-    
-    var body: some View {
-        
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .padding(.leading, 8)
-                .foregroundStyle(Color.magnifyingglass)
-            TextField("\(searchPrompt)", text: $searchText)
-        }
-        .frame(width: widthBar, height: 36)
-        .background(Color.searchbar)
-        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
-        
     }
 }
 

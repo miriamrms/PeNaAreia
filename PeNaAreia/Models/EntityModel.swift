@@ -85,7 +85,7 @@ struct Products{
     let price: Double
     let category: String
     let categoryImage: String
-    var serving: Int
+    var serving: String
     var tentReference: CKRecord.Reference?
 }
 
@@ -107,7 +107,7 @@ extension Products{
               let price = record[ProductsRecordKeys.price.rawValue] as? Double,
               let category = record[ProductsRecordKeys.category.rawValue] as? String,
               let categoryImage = record[ProductsRecordKeys.categoryImage.rawValue] as? String,
-              let serving = record[ProductsRecordKeys.serving.rawValue] as? Int,
+              let serving = record[ProductsRecordKeys.serving.rawValue] as? String,
               let tentReference = record[ProductsRecordKeys.tentReference.rawValue] as? CKRecord.Reference
         else{
             return nil

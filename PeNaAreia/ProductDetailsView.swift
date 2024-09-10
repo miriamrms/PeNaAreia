@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     
+    @StateObject var ckModel = CKModel()
+    @State var order = "asc"
     @State private var searchText = ""
+    var foodText: String
+    
+    @State private var selectedProductsFilter: ProductsFilter?
     
     let columns = [
         GridItem(.flexible()),
@@ -35,12 +40,10 @@ struct ProductDetailsView: View {
                 
                 HStack {
                     HStack {
-                        
-                        
                         Image(systemName: "magnifyingglass")
                             .padding(.leading, 8)
                             .foregroundStyle(Color.magnifyingglass)
-                        TextField("Procure por barracas", text: $searchText)
+                        TextField("Procure por produtos", text: $searchText)
                     }
                     .frame(width: 353, height: 36)
                     .background(Color.searchbar)
@@ -50,107 +53,93 @@ struct ProductDetailsView: View {
                 .padding(.bottom, 24.0)
                 
                 HStack {
-                    Text("Batata-frita")
+                    Text(foodText)
                         .font(.system(size: 24))
                         .fontDesign(.rounded)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.backgroundsand)
                     
                     Spacer()
-                    Image(systemName: "line.3.horizontal.decrease.circle")
+                    
+                    Menu {
+                        
+                        Picker("teste", selection: $selectedProductsFilter) {
+                            ForEach(ProductsFilter.allCases, id: \.self) {
+                                productFilter in Text(productFilter.rawValue).tag(productFilter as ProductsFilter?)
+                            }
+                        }
+                    }
+                    label: { Image(systemName: "line.3.horizontal.decrease.circle")
                         .imageScale(.large)
                         .foregroundStyle(Color.backgroundsand)
+                    }
                 }
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        ZStack {
-                            Image("bluerectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
+                        ForEach(ckModel.products.filter({ product in
+                            if product.category == foodText{
+                                return true
+                            }
+                            else{
+                                return false
+                            }
+                        }).sorted(by: { product1, product2 in
+                            if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
+                                product2.price >= product1.price
+                            }
+                            else{
+                                product2.price <= product1.price
+                            }
+                        }), id: \.id){ product in
+                            ZStack {
+                                Image("bluerectangleproducts")
+                                    .resizable()
+                                .frame(width: 350, height: 70)
+                                
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(product.name)
+                                            .font(.system(size: 16))
                                             .fontDesign(.rounded)
                                             .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
+                                            .foregroundColor(Color.darkblue)
+                                        Spacer()
+                                        HStack (spacing: 0){
+                                            
+                                            Text(String(format: "R$%.02f", product.price))
+                                                .font(.system(size: 14))
+                                                .fontDesign(.rounded)
+                                                .fontWeight(.medium)
+                                            .foregroundColor(Color.darkblue)
+                                        }
+                                    }
+                                    .frame(width: 305
+                                    )
+                                    
+                                    HStack (spacing: 0){
+                                        Image(systemName: "mappin")
+                                            .foregroundColor(Color.darkblue)
+                                        
+                                        Text("200m | ")
+                                            .font(.system(size: 14))
+                                            .fontDesign(.rounded)
+                                            .fontWeight(.light)
+                                            .foregroundColor(Color.darkblue)
                                     }
                                 }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
+                                .frame(width: 350, height: 50)
                             }
-                            .frame(width: 350, height: 50)
                         }
                         
-                        ZStack {
-                            Image("sandrectangleproducts")
-                                .resizable()
-                            .frame(width: 350, height: 70)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Nome da Barraca")
-                                        .font(.system(size: 16))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    Spacer()
-                                    HStack (spacing: 0){
-                                        Text("R$:")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.regular)
-                                        .foregroundColor(Color.darkblue)
-                                        
-                                        Text("00,00")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.medium)
-                                        .foregroundColor(Color.darkblue)
-                                    }
-                                }
-                                .frame(width: 305
-                                )
-                                
-                                HStack (spacing: 0){
-                                    Image(systemName: "mappin")
-                                        .foregroundColor(Color.darkblue)
-                                    
-                                    Text("Distância da Barraca")
-                                        .font(.system(size: 14))
-                                        .fontDesign(.rounded)
-                                        .fontWeight(.light)
-                                        .foregroundColor(Color.darkblue)
-                                }
-                            }
-                            .frame(width: 350, height: 50)
-                        }
+                    }
+                }
+                .task {
+                    do{
+                        try await ckModel.populateProducts()
+                    }
+                    catch{
+                        print(error)
                     }
                 }
             }
@@ -163,11 +152,22 @@ struct ProductDetailsView: View {
         
         
     }
+    
+//    func productFilterFunction(product: Products) -> Bool {
+//        switch selectedProductsFilter {
+//        case .lowPrice:
+//            return product.averagePrice == "Baixo"
+//        case .highPrice:
+//            return product.averagePrice == "Alto"
+//        case nil:
+//            return true
+//        }
+//    }
 }
 
 //Lembrar de depois criar o struct que puxa a informação dos produtos
 
 
 #Preview {
-    ProductDetailsView()
+    ProductDetailsView(foodText: "Refrigerantes")
 }
