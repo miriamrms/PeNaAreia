@@ -11,8 +11,8 @@ import CoreLocation
 struct TentsView: View {
     
     @StateObject var ckModel = CKModel()
-    
     @State private var selectedTentFilter: TentsFilter?
+    @StateObject var distanceModel = DistanceViewModel()
     
     @State var searchText: String = ""
     @State var searchIsActive: Bool = false
@@ -44,7 +44,6 @@ struct TentsView: View {
                 
                 
                 Menu {
-                    //lógica de atualizar tela do filtro
                     Picker("teste", selection: $selectedTentFilter) {
                         ForEach(TentsFilter.allCases, id: \.self) {
                             tentFilter in Text(tentFilter.rawValue).tag(tentFilter as TentsFilter?)
@@ -60,10 +59,23 @@ struct TentsView: View {
             
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    
-                    ForEach(filteredAndSearchTents, id: \.id){ tent in
-                        NavigationLink(destination: TentDetailsView(tent: tent)){
-                            TentCard(tent: tent)
+                    if let location = distanceModel.location{
+                        ForEach(filteredAndSearchTents, id: \.id){ tent in
+                            let distanceInMeters = tent.coordinates.distance(from: location)
+                            let kilometers = Int(distanceInMeters) / 1000
+                            let meters = Int(distanceInMeters) % 1000
+                            let distance = (kilometers == 0) ? "\(meters)m" : "\(kilometers)km e \(meters)m"
+                            
+                            NavigationLink(destination: TentDetailsView(tent: tent)){
+                                TentCard(tent: tent, isLocationAutorized: true, distance: distance)
+                            }
+                        }
+                    }
+                    else{
+                        ForEach(filteredAndSearchTents, id: \.id){ tent in
+                            NavigationLink(destination: TentDetailsView(tent: tent)){
+                                TentCard(tent: tent, isLocationAutorized: false, distance: "")
+                            }
                         }
                     }
                     
@@ -128,8 +140,10 @@ struct TentsView: View {
 }
 
 struct TentCard: View {
-    
+
     let tent: Tents
+    let isLocationAutorized: Bool
+    let distance: String
     
     var body: some View {
         ZStack{
@@ -147,9 +161,11 @@ struct TentCard: View {
                     .foregroundStyle(Color.white)
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
-                Text("200m de distância")
-                    .foregroundStyle(Color.white)
-                    .font(.system(size: 12, weight: .light, design: .rounded))
+                if isLocationAutorized{
+                    Text(distance)
+                        .foregroundStyle(Color.white)
+                        .font(.system(size: 12, weight: .light, design: .rounded))
+                }
                 
                 
                 HStack {
