@@ -21,6 +21,9 @@
         }
       }
     },
+    "%@ de distância" : {
+
+    },
     "%@, %lldº  |  %@" : {
       "localizations" : {
         "en" : {
@@ -30,9 +33,6 @@
           }
         }
       }
-    },
-    "2,4km de distância" : {
-
     },
     "200m | " : {
 
@@ -164,6 +164,9 @@
       }
     },
     "teste" : {
+
+    },
+    "Veja a localização" : {
 
     }
   },
