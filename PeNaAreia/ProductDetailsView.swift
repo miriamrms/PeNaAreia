@@ -77,17 +77,19 @@ struct ProductDetailsView: View {
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        //ForEach(ckModel.products.sorted(by: { product1, product2 in
-                          //  if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo") {
-                            //    product1.price >= product2.price
-                            //} else {
-                              //  product1.price <= product2.price
                         ForEach(ckModel.products.filter({ product in
                             if product.category == foodText{
                                 return true
                             }
                             else{
                                 return false
+                            }
+                        }).sorted(by: { product1, product2 in
+                            if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
+                                product2.price >= product1.price
+                            }
+                            else{
+                                product2.price <= product1.price
                             }
                         }), id: \.id){ product in
                             ZStack {
@@ -167,5 +169,5 @@ struct ProductDetailsView: View {
 
 
 #Preview {
-    ProductDetailsView(foodText: "Batata-Frita")
+    ProductDetailsView(foodText: "Refrigerantes")
 }
