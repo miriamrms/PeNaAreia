@@ -13,6 +13,7 @@ struct TentsView: View {
     @StateObject var ckModel = CKModel()
     @State private var selectedTentFilter: TentsFilter?
     @StateObject var distanceModel = DistanceViewModel()
+    @AppStorage("favTents") var favTents: [String] = []
     
     @State var searchText: String = ""
     @State var searchIsActive: Bool = false
@@ -96,6 +97,8 @@ struct TentsView: View {
     
     func componentFilterFunction(tent: Tents) -> Bool {
         switch selectedTentFilter {
+        case .favorite:
+            return favTents.contains(tent.name)
         case .toilet:
             return tent.toilet
         case .shower:
