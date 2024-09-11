@@ -21,6 +21,16 @@
         }
       }
     },
+    "%@ | %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ | %2$@"
+          }
+        }
+      }
+    },
     "%@ de distância" : {
 
     },
@@ -33,9 +43,6 @@
           }
         }
       }
-    },
-    "200m | " : {
-
     },
     "200m de distância" : {
       "extractionState" : "stale",

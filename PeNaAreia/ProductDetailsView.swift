@@ -11,9 +11,11 @@ import CloudKit
 struct ProductDetailsView: View {
     
     @StateObject var ckModel = CKModel()
+    @StateObject var distanceModel = DistanceViewModel()
     @State var order = "asc"
     @State private var searchText = ""
     var foodText: String
+    
     
     
     @State private var selectedProductsFilter: ProductsFilter?
@@ -81,76 +83,157 @@ struct ProductDetailsView: View {
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
-                        ForEach(ckModel.products.filter({ product in
-                            if product.category == foodText{
-                                return true
-                            }
-                            else{
-                                return false
-                            }
-                        }).sorted(by: { product1, product2 in
-                            if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
-                                product2.price >= product1.price
-                            }
-                            else{
-                                product2.price <= product1.price
-                            }
-                        }), id: \.id){ product in
-                            ZStack {
-                                Image("bluerectangleproducts")
-                                    .resizable()
-                                .frame(width: 350, height: 70)
-                                
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        Text(product.name)
-                                            .font(.system(size: 16))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.medium)
-                                            .foregroundColor(Color.darkblue)
-                                        Spacer()
-                                        HStack (spacing: 0){
-                                            
-                                            Text(String(format: "R$%.02f", product.price))
-                                                .font(.system(size: 14))
+                        if let location = distanceModel.location{
+                            ForEach(ckModel.products.filter({ product in
+                                if product.category == foodText{
+                                    return true
+                                }
+                                else{
+                                    return false
+                                }
+                            }).sorted(by: { product1, product2 in
+                                if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
+                                    product2.price >= product1.price
+                                }
+                                else{
+                                    product2.price <= product1.price
+                                }
+                            }), id: \.id){ product in
+                                ZStack {
+                                    Image("bluerectangleproducts")
+                                        .resizable()
+                                    .frame(width: 350, height: 70)
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text(product.name)
+                                                .font(.system(size: 16))
                                                 .fontDesign(.rounded)
                                                 .fontWeight(.medium)
-                                            .foregroundColor(Color.darkblue)
-                                        }
-                                    }
-                                    .frame(width: 305
-                                    )
-                                    
-                                    HStack (spacing: 0){
-                                        Image(systemName: "mappin")
-                                            .foregroundColor(Color.darkblue)
-                                        
-                                        if let tent = productTentMapping[product.id!]{
-                                            Text("200m | \(tent.name)")
-                                                .font(.system(size: 14))
-                                                .fontDesign(.rounded)
-                                                .fontWeight(.light)
                                                 .foregroundColor(Color.darkblue)
+                                            Spacer()
+                                            HStack (spacing: 0){
+                                                
+                                                Text(String(format: "R$%.02f", product.price))
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.medium)
+                                                .foregroundColor(Color.darkblue)
+                                            }
                                         }
+                                        .frame(width: 305
+                                        )
                                         
-                                    }
-                                }
-                                .frame(width: 350, height: 50)
-                            }
-                            .task {
-                                do{
-                                    if let fetchTent = try await ckModel.fetchTent(forProduct: product){
-                                        DispatchQueue.main.async{
-                                            productTentMapping[product.id!] = fetchTent
+                                        HStack (spacing: 0){
+                                            Image(systemName: "mappin")
+                                                .foregroundColor(Color.darkblue)
+                                            
+                                            if let tent = productTentMapping[product.id!]{
+                                                
+                                                let distanceInMeters = tent.coordinates.distance(from: location)
+                                                let kilometers = Int(distanceInMeters) / 1000
+                                                let meters = Int(distanceInMeters) % 1000
+                                                let distance = (kilometers == 0) ? "\(meters)m" : "\(kilometers)km e \(meters)m"
+                                                
+                                                Text("\(distance) | \(tent.name)")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.light)
+                                                    .foregroundColor(Color.darkblue)
+                                            }
+                                            
                                         }
                                     }
+                                    .frame(width: 350, height: 50)
                                 }
-                                catch{
-                                    print(error)
+                                .task {
+                                    do{
+                                        if let fetchTent = try await ckModel.fetchTent(forProduct: product){
+                                            DispatchQueue.main.async{
+                                                productTentMapping[product.id!] = fetchTent
+                                            }
+                                        }
+                                    }
+                                    catch{
+                                        print(error)
+                                    }
                                 }
+                                
                             }
-                            
                         }
+                        else{
+                            ForEach(ckModel.products.filter({ product in
+                                if product.category == foodText{
+                                    return true
+                                }
+                                else{
+                                    return false
+                                }
+                            }).sorted(by: { product1, product2 in
+                                if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
+                                    product2.price >= product1.price
+                                }
+                                else{
+                                    product2.price <= product1.price
+                                }
+                            }), id: \.id){ product in
+                                ZStack {
+                                    Image("bluerectangleproducts")
+                                        .resizable()
+                                    .frame(width: 350, height: 70)
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text(product.name)
+                                                .font(.system(size: 16))
+                                                .fontDesign(.rounded)
+                                                .fontWeight(.medium)
+                                                .foregroundColor(Color.darkblue)
+                                            Spacer()
+                                            HStack (spacing: 0){
+                                                
+                                                Text(String(format: "R$%.02f", product.price))
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.medium)
+                                                .foregroundColor(Color.darkblue)
+                                            }
+                                        }
+                                        .frame(width: 305
+                                        )
+                                        
+                                        HStack (spacing: 0){
+                                            Image(systemName: "mappin")
+                                                .foregroundColor(Color.darkblue)
+                                            
+                                            if let tent = productTentMapping[product.id!]{
+                                                Text("\(tent.name)")
+                                                    .font(.system(size: 14))
+                                                    .fontDesign(.rounded)
+                                                    .fontWeight(.light)
+                                                    .foregroundColor(Color.darkblue)
+                                            }
+                                            
+                                        }
+                                    }
+                                    .frame(width: 350, height: 50)
+                                }
+                                .task {
+                                    do{
+                                        if let fetchTent = try await ckModel.fetchTent(forProduct: product){
+                                            DispatchQueue.main.async{
+                                                productTentMapping[product.id!] = fetchTent
+                                            }
+                                        }
+                                    }
+                                    catch{
+                                        print(error)
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
                         
                     }
                 }
