@@ -17,7 +17,7 @@ struct SegmentedControlView: View {
     var body: some View {
         VStack {
             HStack(spacing: 0) {
-                ForEach(0..<segments.count) { index in
+                ForEach(0..<segments.count, id: \.self) { index in
                     Button(action: {
                         withAnimation {
                             selectedSegment = index

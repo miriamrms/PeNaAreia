@@ -26,13 +26,13 @@ struct ProductsView: View {
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         NavigationLink(destination: ProductDetailsView(foodText: "Batatas fritas")) {
-                                      ProductItem(backgroundImage: "productsand", foodImage: "fries", foodText: "Batatas fritas", offset: -10)
+                                      ProductItem(backgroundImage: "productsand", foodImage: "batatas_fritas", foodText: "Batatas fritas", offset: -10)
                                     }
                         NavigationLink(destination: ProductDetailsView(foodText: "Espetinhos")) {
-                          ProductItem(backgroundImage: "productblue", foodImage: "barbecue", foodText: "Espetinhos", offset: -14)
+                          ProductItem(backgroundImage: "productblue", foodImage: "espetinhos", foodText: "Espetinhos", offset: -14)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Caldinhos")) {
-                          ProductItem(backgroundImage: "productblue", foodImage: "broth", foodText: "Caldinhos", offset: -10)
+                          ProductItem(backgroundImage: "productblue", foodImage: "caldinhos", foodText: "Caldinhos", offset: -19)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Peixes e Frutos do Mar")) {
                           ProductItem(backgroundImage: "productsand", foodImage: "shrimp", foodText: "Peixes e Frutos do Mar", offset: -19)
@@ -52,22 +52,22 @@ struct ProductsView: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         
                         NavigationLink(destination: ProductDetailsView(foodText: "Águas")) {
-                            ProductItem(backgroundImage: "productsand", foodImage: "fries", foodText: "Águas", offset: -10)
+                            ProductItem(backgroundImage: "productsand", foodImage: "aguas", foodText: "Águas", offset: -26)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Sucos")) {
-                            ProductItem(backgroundImage: "productblue", foodImage: "barbecue", foodText: "Sucos", offset: -14)
+                            ProductItem(backgroundImage: "productblue", foodImage: "sucos", foodText: "Sucos", offset: -20)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Refrigerantes")) {
-                            ProductItem(backgroundImage: "productblue", foodImage: "broth", foodText: "Refrigerantes", offset: -10)
+                            ProductItem(backgroundImage: "productblue", foodImage: "refrigerantes", foodText: "Refrigerantes", offset: -10)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Cervejas")) {
-                            ProductItem(backgroundImage: "productsand", foodImage: "shrimp", foodText: "Cervejas", offset: -19)
+                            ProductItem(backgroundImage: "productsand", foodImage: "cervejas", foodText: "Cervejas", offset: -19)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Drinks")) {
-                            ProductItem(backgroundImage: "productsand", foodImage: "lunch", foodText: "Drinks", offset: -13)
+                            ProductItem(backgroundImage: "productsand", foodImage: "drinks", foodText: "Drinks", offset: -20)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Cachaças")) {
-                            ProductItem(backgroundImage: "productblue", foodImage: "hamburguer", foodText: "Cachaças", offset: -14)
+                            ProductItem(backgroundImage: "productblue", foodImage: "cachacas", foodText: "Cachaças", offset: -26)
                         }
                         
                     }
