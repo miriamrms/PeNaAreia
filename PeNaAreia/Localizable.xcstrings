@@ -72,9 +72,6 @@
         }
       }
     },
-    "Bebidas" : {
-
-    },
     "clear" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -96,9 +93,6 @@
           }
         }
       }
-    },
-    "Comidas" : {
-
     },
     "Lotação há 2min" : {
 

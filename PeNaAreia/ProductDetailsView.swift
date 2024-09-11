@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct ProductDetailsView: View {
     
@@ -14,7 +15,10 @@ struct ProductDetailsView: View {
     @State private var searchText = ""
     var foodText: String
     
+    
     @State private var selectedProductsFilter: ProductsFilter?
+    @State private var productTentMapping: [CKRecord.ID: Tents] = [:]
+    @State private var tentRelation: Tents?
     
     let columns = [
         GridItem(.flexible()),
@@ -121,15 +125,31 @@ struct ProductDetailsView: View {
                                         Image(systemName: "mappin")
                                             .foregroundColor(Color.darkblue)
                                         
-                                        Text("200m | ")
-                                            .font(.system(size: 14))
-                                            .fontDesign(.rounded)
-                                            .fontWeight(.light)
-                                            .foregroundColor(Color.darkblue)
+                                        if let tent = productTentMapping[product.id!]{
+                                            Text("200m | \(tent.name)")
+                                                .font(.system(size: 14))
+                                                .fontDesign(.rounded)
+                                                .fontWeight(.light)
+                                                .foregroundColor(Color.darkblue)
+                                        }
+                                        
                                     }
                                 }
                                 .frame(width: 350, height: 50)
                             }
+                            .task {
+                                do{
+                                    if let fetchTent = try await ckModel.fetchTent(forProduct: product){
+                                        DispatchQueue.main.async{
+                                            productTentMapping[product.id!] = fetchTent
+                                        }
+                                    }
+                                }
+                                catch{
+                                    print(error)
+                                }
+                            }
+                            
                         }
                         
                     }
