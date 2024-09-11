@@ -55,8 +55,52 @@ class CKModel: ObservableObject{
         }
     }
     
-    func getTentReference(){
+    func populateTentProducts(forTent tent: Tents) async throws {
+        guard let tentRecordID = tent.id else {
+            throw NSError(domain: "CKModelError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Tent record ID not found."])
+        }
         
+        let reference = CKRecord.Reference(recordID: tentRecordID, action: .none)
+        let predicate = NSPredicate(format: "tentReference == %@", reference)
+        let query = CKQuery(recordType: ProductsRecordKeys.type.rawValue, predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
+        
+        let result = try await database.records(matching: query)
+        let records = result.matchResults.compactMap { try? $0.1.get() }
+        
+        // Filtra apenas os registros não nulos
+        let nonOptionalRecords = records.compactMap { record -> (CKRecord.ID, Products)? in
+            guard let product = Products(record: record) else { return nil }
+            return (record.recordID, product)
+        }
+        
+        // Atualiza o dicionário
+        DispatchQueue.main.async { [self] in
+            productsDictionary = Dictionary(uniqueKeysWithValues: nonOptionalRecords)
+        }
     }
+    
+    func fetchTent(forProduct product: Products) async throws -> Tents? {
+            // Verifica se o produto contém uma referência à barraca
+            guard let tentReference = product.record["tentReference"] as? CKRecord.Reference else {
+                throw NSError(domain: "CKModelError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Product does not have a valid tent reference."])
+            }
+            
+            // Cria uma consulta para buscar a barraca usando a referência
+            let tentRecordID = tentReference.recordID
+            let recordIDPredicate = NSPredicate(format: "recordID == %@", tentRecordID)
+            let query = CKQuery(recordType: TentsRecordKeys.type.rawValue, predicate: recordIDPredicate)
+            
+            let result = try await database.records(matching: query)
+            let records = result.matchResults.compactMap { try? $0.1.get() }
+            
+            // Assumindo que a barraca é encontrada, retorna o primeiro registro encontrado
+            guard let tentRecord = records.first else {
+                throw NSError(domain: "CKModelError", code: 2, userInfo: [NSLocalizedDescriptionKey: "No tent found for the given product reference."])
+            }
+            
+            return Tents(record: tentRecord)
+        }
+
     
 }

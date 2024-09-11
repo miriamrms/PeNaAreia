@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SegmentedControlView: View {
     @State private var selectedSegment = 0
+    @Binding var selectedCategory: String
     let segments = [
         (iconName: "fish.ic", label: "Comidas"),
         (iconName: "coco.ic", label: "Bebidas")
@@ -21,6 +22,7 @@ struct SegmentedControlView: View {
                     Button(action: {
                         withAnimation {
                             selectedSegment = index
+                            selectedCategory = selectedSegment == 0 ? Category.comidas.rawValue : Category.bebidas.rawValue
                         }
                     }) {
                         VStack {
@@ -51,5 +53,5 @@ struct SegmentedControlView: View {
 }
 
 #Preview {
-    SegmentedControlView()
+    SegmentedControlView(selectedCategory: .constant("Comidas"))
 }
