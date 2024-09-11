@@ -97,6 +97,8 @@ struct TentsView: View {
     
     func componentFilterFunction(tent: Tents) -> Bool {
         switch selectedTentFilter {
+        case .all:
+            return true
         case .favorite:
             return favTents.contains(tent.name)
         case .toilet:

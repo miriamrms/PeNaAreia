@@ -9,7 +9,8 @@ import Foundation
 
 enum TentsFilter: String, CaseIterable {
     
-    case favorite = "Favorito"
+    case all = "Limpar seleção"
+    case favorite = "Favoritos"
     case toilet = "Banheiro"
     case shower = "Chuveiro"
     case seaBath = "Banho de Mar"
