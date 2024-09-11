@@ -19,13 +19,13 @@ struct HeaderView: View {
             Color("backgroundsand")
             
             VStack {
-                
                 Image("headerwaves")
                 Image("logo")
                     .padding(.top, 16)
                 
                 if let weather = wvm.weather {
-                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º  |  \(wvm.tideStatus)")
+//                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º  |  \(wvm.tideStatus)")
+                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º")
                         .foregroundStyle(Color.darkerblue)
                         .font(.system(size: 14, design: .rounded))
                 } else {
@@ -35,11 +35,10 @@ struct HeaderView: View {
                         .task {
                             print("Executando task para carregar o clima...")
                             await wvm.showWeather()
-                            wvm.fetchTide()
+//                            wvm.fetchTide()
                             wvm.startAutoUpdate()
                         }
                 }
-                
                 HStack (spacing: 84) {
                     Button(action: { showProductsView = false
                     }, label: {
@@ -50,7 +49,6 @@ struct HeaderView: View {
                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                         }
                     })
-                    
                     Button(action: { showProductsView = true
                     }, label: {
                         HStack {
@@ -78,7 +76,6 @@ struct HeaderView: View {
             }
         } .ignoresSafeArea()
             .frame(height: 274)
-        
         if showProductsView {
             ProductsView()
         } else {

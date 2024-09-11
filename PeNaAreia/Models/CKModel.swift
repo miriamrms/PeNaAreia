@@ -33,7 +33,9 @@ class CKModel: ObservableObject{
         let records = result.matchResults.compactMap{ try? $0.1.get() }
         
         records.forEach{ record in
-            tentsDictionary[record.recordID] = Tents(record: record)
+            DispatchQueue.main.async { [self] in
+                tentsDictionary[record.recordID] = Tents(record: record)
+            }
         }
     }
     
