@@ -32,7 +32,7 @@ struct ProductDetailsView: View {
             Image("productdetailsbackground")
                 .resizable()
                 .scaledToFill()
-            .ignoresSafeArea()
+                .ignoresSafeArea()
             
             
             VStack {
@@ -75,22 +75,31 @@ struct ProductDetailsView: View {
                             }
                         }
                     }
-                    label: { Image(systemName: "line.3.horizontal.decrease.circle")
+                label: { Image(systemName: "line.3.horizontal.decrease.circle")
                         .imageScale(.large)
                         .foregroundStyle(Color.backgroundsand)
-                    }
+                }
                 }
                 .padding(.horizontal, 19.0)
                 VStack {
                     ScrollView {
                         if let location = distanceModel.location{
                             ForEach(ckModel.products.filter({ product in
-                                if product.category == foodText{
+                                
+                                let minusculo = product.name.lowercased()
+                                if product.category == foodText && searchText == ""{
                                     return true
+                        
+                                }
+                                else if product.category == foodText && minusculo.contains(searchText.lowercased()){
+                                    return true
+                                    
                                 }
                                 else{
                                     return false
+                                    
                                 }
+                                
                             }).sorted(by: { product1, product2 in
                                 if (selectedProductsFilter?.rawValue ?? "" == "Preço Baixo"){
                                     product2.price >= product1.price
@@ -102,7 +111,7 @@ struct ProductDetailsView: View {
                                 ZStack {
                                     Image("bluerectangleproducts")
                                         .resizable()
-                                    .frame(width: 350, height: 70)
+                                        .frame(width: 350, height: 70)
                                     
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -118,7 +127,7 @@ struct ProductDetailsView: View {
                                                     .font(.system(size: 14))
                                                     .fontDesign(.rounded)
                                                     .fontWeight(.medium)
-                                                .foregroundColor(Color.darkblue)
+                                                    .foregroundColor(Color.darkblue)
                                             }
                                         }
                                         .frame(width: 305
@@ -180,7 +189,7 @@ struct ProductDetailsView: View {
                                 ZStack {
                                     Image("bluerectangleproducts")
                                         .resizable()
-                                    .frame(width: 350, height: 70)
+                                        .frame(width: 350, height: 70)
                                     
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -196,7 +205,7 @@ struct ProductDetailsView: View {
                                                     .font(.system(size: 14))
                                                     .fontDesign(.rounded)
                                                     .fontWeight(.medium)
-                                                .foregroundColor(Color.darkblue)
+                                                    .foregroundColor(Color.darkblue)
                                             }
                                         }
                                         .frame(width: 305
@@ -249,23 +258,23 @@ struct ProductDetailsView: View {
             .padding(.top, 40.0)
             
             
-
+            
         }
         
         
         
     }
     
-//    func productFilterFunction(product: Products) -> Bool {
-//        switch selectedProductsFilter {
-//        case .lowPrice:
-//            return product.averagePrice == "Baixo"
-//        case .highPrice:
-//            return product.averagePrice == "Alto"
-//        case nil:
-//            return true
-//        }
-//    }
+    //    func productFilterFunction(product: Products) -> Bool {
+    //        switch selectedProductsFilter {
+    //        case .lowPrice:
+    //            return product.averagePrice == "Baixo"
+    //        case .highPrice:
+    //            return product.averagePrice == "Alto"
+    //        case nil:
+    //            return true
+    //        }
+    //    }
 }
 
 //Lembrar de depois criar o struct que puxa a informação dos produtos
