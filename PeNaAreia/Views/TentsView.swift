@@ -21,16 +21,17 @@ struct TentsView: View {
     var filteredAndSearchTents: [Tents] {
         if selectedTentFilter != nil {
             let tentsFiltered = ckModel.tents.filter(componentFilterFunction)
+
             return !searchText.isEmpty ?
-            tentsFiltered.filter({$0.name.contains(searchText)})
-            : tentsFiltered
-        }
-        else { //não colocou o filtro
+                tentsFiltered.filter { $0.name.range(of: searchText, options: .caseInsensitive) != nil } :
+                tentsFiltered
+        } else {
             return !searchText.isEmpty ?
-            ckModel.tents.filter({$0.name.contains(searchText)})
-            : ckModel.tents
+                ckModel.tents.filter { $0.name.range(of: searchText, options: .caseInsensitive) != nil } :
+                ckModel.tents
         }
     }
+
     
     let columns = [
         GridItem(.flexible()),
