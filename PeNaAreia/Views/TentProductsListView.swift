@@ -22,7 +22,13 @@ struct TentProductsListView: View {
                 else{
                     return false
                 }
-            }), id: \.id){ product in
+            }).sorted(by: { product1, product2 in if (product1.category != product2.category){
+                        return product1.category < product2.category
+                    }
+                else {
+                    return true
+                }
+                }), id: \.id){ product in
                 HStack{
                     VStack(alignment: .leading){
                         Text(product.name)
