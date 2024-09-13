@@ -7,12 +7,158 @@
 
 import SwiftUI
 
-struct LaunchScreenView: View {
+struct AnimatedWaveView: View {
+    @State private var phase: CGFloat = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            // Fundo branco no topo
+            Color.white
+                .edgesIgnoringSafeArea(.all)
+            
+            // Adicionando a onda animada
+            TimelineView(.animation) { timeline in
+                let date = timeline.date.timeIntervalSinceReferenceDate
+                let animatedPhase = CGFloat(date.truncatingRemainder(dividingBy: 2)) * .pi * 2
+                
+                ZStack {
+                    WaveShape(waveHeight: 30, phase: animatedPhase)
+                        .fill(Color.lightblue)
+                        .frame(height: 820)
+                        .offset(y: 10)
+                    
+                    Wave2Shape(waveHeight: 30, phase: animatedPhase)
+                        .fill(Color.darkblue)
+                        .frame(height: 430)
+                        .offset(y: 200)
+                } // Posicione a onda como preferir
+                
+                
+            }
+            
+            VStack {
+                Spacer()
+                    .frame(height: 200)
+                
+                
+                Image("Frame")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300.0, height: 80.0)
+                Spacer()
+            }
+        }
     }
 }
 
-#Preview {
-    LaunchScreenView()
+struct WaveShape: Shape {
+    var waveHeight: CGFloat
+    var phase: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        for x in stride(from: 0, through: width, by: 1) {
+            let relativeX = x / width
+            let sine = sin(2.3 * .pi * relativeX + phase)
+            let y = waveHeight * sine + height * 0.5
+            path.addLine(to: CGPoint(x: x, y: y))
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.addLine(to: CGPoint(x: 0, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
 }
+
+struct Wave2Shape: Shape {
+    var waveHeight: CGFloat
+    var phase: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        for x in stride(from: 0, through: width, by: 1) {
+            let relativeX = x / width
+            let sine = sin(1 * .pi * relativeX + phase)
+            let y = waveHeight * sine + height * 0.08
+            path.addLine(to: CGPoint(x: x, y: y))
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.addLine(to: CGPoint(x: 0, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+struct Wave2ShapeReverse: Shape {
+    var waveHeight: CGFloat
+    var phase: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        for x in stride(from: 0, through: width, by: 1) {
+            let relativeX = x / width
+            let sine = sin(1 * .pi * relativeX - phase) // Inverter a fase para o sentido oposto
+            let y = waveHeight * sine + height * 0.08
+            path.addLine(to: CGPoint(x: x, y: y))
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.addLine(to: CGPoint(x: 0, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+import SwiftUI
+
+struct WaveShapeOpposite: Shape {
+    var waveHeight: CGFloat
+    var phase: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        for x in stride(from: 0, through: width, by: 1) {
+            let relativeX = x / width
+            let sine = sin(2.3 * .pi * relativeX - phase) // Inverter a fase para o sentido oposto
+            let y = waveHeight * sine + height * 0.5
+            path.addLine(to: CGPoint(x: x, y: y))
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.addLine(to: CGPoint(x: 0, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+
+#Preview {
+    AnimatedWaveView()
+}
+
