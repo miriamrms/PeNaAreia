@@ -25,6 +25,7 @@
 		6AB4830D2C80A16C009C8B9A /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4830C2C80A16C009C8B9A /* WeatherViewModel.swift */; };
 		B26DD7C52C7F65CA0075B1E9 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */; };
 		B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */; };
+		B293AEB22C932669006DC32B /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AEB12C932669006DC32B /* LaunchScreenView.swift */; };
 		D41A43DB2C85D69F0024A51A /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */; };
 		D41A43E02C8B25AA0024A51A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201DA382C81F04500464FAB /* ContentView.swift */; };
 		D41A43E12C8B25BC0024A51A /* TentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E95662C7CB284004FB149 /* TentDetailsView.swift */; };
@@ -55,6 +56,7 @@
 		B201DA382C81F04500464FAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
+		B293AEB12C932669006DC32B /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchScreenView.swift; path = ../LaunchScreenView.swift; sourceTree = "<group>"; };
 		D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 		D41A43E22C8B38380024A51A /* TentsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentsFilter.swift; sourceTree = "<group>"; };
 		D44BB59F2C8F23ED0096713D /* ProductsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFilter.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				D44BB59F2C8F23ED0096713D /* ProductsFilter.swift */,
 				B201DA382C81F04500464FAB /* ContentView.swift */,
 				B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */,
+				B293AEB12C932669006DC32B /* LaunchScreenView.swift */,
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
 				176E95682C7CB284004FB149 /* Assets.xcassets */,
 				176E956A2C7CB284004FB149 /* Preview Content */,
@@ -224,6 +227,7 @@
 			files = (
 				D41A43E32C8B38380024A51A /* TentsFilter.swift in Sources */,
 				D41A43E12C8B25BC0024A51A /* TentDetailsView.swift in Sources */,
+				B293AEB22C932669006DC32B /* LaunchScreenView.swift in Sources */,
 				D41A43E02C8B25AA0024A51A /* ContentView.swift in Sources */,
 				B26DD7C72C7F69D70075B1E9 /* SegmentedControlView.swift in Sources */,
 				6A96F5672C80C217001ABB21 /* TideModel.swift in Sources */,
