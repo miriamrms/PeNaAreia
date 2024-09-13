@@ -36,12 +36,6 @@ struct ProductDetailsView: View {
             
             
             VStack {
-                HStack {
-                    Image("back.ic")
-                        .padding(.leading, 25.0)
-                    Spacer()
-                }
-                .padding(.bottom, 44.0)
                 
                 
                 HStack {
@@ -255,7 +249,7 @@ struct ProductDetailsView: View {
                     }
                 }
             }
-            .padding(.top, 40.0)
+            .padding(.top, 70.0)
             
             
             
