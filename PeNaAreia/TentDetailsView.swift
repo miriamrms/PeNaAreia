@@ -93,6 +93,7 @@ struct TentDetailsView: View {
                             Spacer()
                         }
                         .padding(.leading)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     } .padding(.bottom, 10)
 
                     HStack{
