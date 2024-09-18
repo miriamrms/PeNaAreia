@@ -17,7 +17,7 @@ struct PeNaAreiaApp: App {
                 AnimatedWaveView()
                     .onAppear {
                         // Tempo de transição pra ContentView
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             withAnimation {
                                 showAnimatedWave = false
                             }
