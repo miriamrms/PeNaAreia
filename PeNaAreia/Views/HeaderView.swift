@@ -11,6 +11,7 @@ struct HeaderView: View {
     
     @State private var showProductsView = false
     @EnvironmentObject private var wvm: WeatherViewModel
+    @State private var selected: String = "Barracas"
     
     var body: some View {
         
@@ -39,48 +40,58 @@ struct HeaderView: View {
                             wvm.startAutoUpdate()
                         }
                 }
-                HStack (spacing: 84) {
-                    Button(action: { showProductsView = false
-                    }, label: {
-                        HStack {
-                            Image("umbrellaicon")
-                            Text("Barracas")
-                                .foregroundStyle(Color.darkblue)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                        }
-                    })
-                    Button(action: { showProductsView = true
-                    }, label: {
-                        HStack {
-                            Image("productsicon")
-                            Text("Produtos")
-                                .foregroundStyle(Color.darkblue)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                        }
-                    })
-                } .padding(.top, 32)
-                
-                ZStack {
-                    Rectangle()
-                        .frame(height: 8)
-                        .foregroundStyle(Color.lighterblue)
-                    
-                    HStack {
-                        Rectangle()
-                            .frame(width: 196, height: 8)
-                            .foregroundStyle(Color.lightblue)
-                        Spacer()
-                    }
-                }
+               
+                MainSegmentedControlView(selection: $selected)
+                    .padding(.top, 24)
+//
                 Spacer()
             }
         } .ignoresSafeArea()
             .frame(height: 274)
-        if showProductsView {
+        if selected == "Produtos" {
             ProductsView()
         } else {
             TentsView()
         }
+    }
+}
+
+struct MainSegmentedControlView: View{
+    var options: [String] = ["Barracas","Produtos"]
+    @Binding var selection: String
+    @Namespace private var namespace
+    var body: some View{
+        HStack(alignment: .top, spacing: 0){
+            ForEach(options, id: \.self){ option in
+                VStack{
+                    HStack{
+                        Image(option == "Produtos" ? "productsicon" : "umbrellaicon")
+                        Text(option)
+                            .foregroundStyle(Color.darkblue)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                    }
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    ZStack{
+                        Rectangle()
+                            .frame(height: 8)
+                            .foregroundStyle(Color.lighterblue)
+                        if selection == option{
+                            Rectangle()
+                                .frame(height: 8)
+                                .foregroundStyle(Color.lightblue)
+                                .matchedGeometryEffect(id: "selection", in: namespace)
+                        }
+                    }
+                
+                }
+                .foregroundStyle(selection == option ? .darkblue : .lightblue)
+                .onTapGesture {
+                    selection = option
+                }
+                
+            }
+        }
+        .animation(.smooth, value: selection)
     }
 }
 
