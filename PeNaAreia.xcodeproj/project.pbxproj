@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		176E95612C7CB284004FB149 /* PeNaAreia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeNaAreia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeNaAreiaApp.swift; sourceTree = "<group>"; };
-		176E95662C7CB284004FB149 /* TentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentDetailsView.swift; sourceTree = "<group>"; };
+		176E95662C7CB284004FB149 /* TentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TentDetailsView.swift; path = ../TentDetailsView.swift; sourceTree = "<group>"; };
 		176E95682C7CB284004FB149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176E956B2C7CB284004FB149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		176E95F02C85DA57004FB149 /* EntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityModel.swift; sourceTree = "<group>"; };
@@ -44,6 +44,7 @@
 		176E96122C908339004FB149 /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 		176E96142C9209E2004FB149 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		176E96162C920F63004FB149 /* TentProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentProductsListView.swift; sourceTree = "<group>"; };
+		17FAE4772C9AF7F200396BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A02684C2C8229C500B25308 /* CapacityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityAlertView.swift; sourceTree = "<group>"; };
 		6A96F5622C80B10E001ABB21 /* PeNaAreia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeNaAreia.entitlements; sourceTree = "<group>"; };
 		6A96F5632C80C124001ABB21 /* TideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideViewModel.swift; sourceTree = "<group>"; };
@@ -54,7 +55,7 @@
 		6AB483062C7F4C94009C8B9A /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		6AB4830C2C80A16C009C8B9A /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		B201DA382C81F04500464FAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsView.swift; path = ../ProductDetailsView.swift; sourceTree = "<group>"; };
 		B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
 		B293AEB12C932669006DC32B /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchScreenView.swift; path = ../LaunchScreenView.swift; sourceTree = "<group>"; };
 		D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
@@ -92,18 +93,17 @@
 		176E95632C7CB284004FB149 /* PeNaAreia */ = {
 			isa = PBXGroup;
 			children = (
+				17FAE4772C9AF7F200396BD2 /* Info.plist */,
 				6A96F5622C80B10E001ABB21 /* PeNaAreia.entitlements */,
 				6A96F5682C81EAC6001ABB21 /* Localizable.xcstrings */,
 				6A96F5652C80C204001ABB21 /* Models */,
 				6AB4830B2C80A158009C8B9A /* ViewModel */,
 				6AB482FE2C7E0F47009C8B9A /* Views */,
-				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
-				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
 				D41A43DA2C85D69F0024A51A /* ExtensionArray.swift */,
 				D41A43E22C8B38380024A51A /* TentsFilter.swift */,
-				D44BB59F2C8F23ED0096713D /* ProductsFilter.swift */,
 				B201DA382C81F04500464FAB /* ContentView.swift */,
 				B26DD7C62C7F69D70075B1E9 /* SegmentedControlView.swift */,
+				D44BB59F2C8F23ED0096713D /* ProductsFilter.swift */,
 				B293AEB12C932669006DC32B /* LaunchScreenView.swift */,
 				176E95642C7CB284004FB149 /* PeNaAreiaApp.swift */,
 				176E95682C7CB284004FB149 /* Assets.xcassets */,
@@ -133,10 +133,12 @@
 		6AB482FE2C7E0F47009C8B9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				176E95662C7CB284004FB149 /* TentDetailsView.swift */,
 				6AB482FF2C7E0F7A009C8B9A /* HeaderView.swift */,
 				6AB483022C7E1C90009C8B9A /* TentsView.swift */,
 				6AB483062C7F4C94009C8B9A /* ProductsView.swift */,
 				6A02684C2C8229C500B25308 /* CapacityAlertView.swift */,
+				B26DD7C42C7F65CA0075B1E9 /* ProductDetailsView.swift */,
 				176E96162C920F63004FB149 /* TentProductsListView.swift */,
 			);
 			path = Views;
@@ -383,14 +385,17 @@
 				DEVELOPMENT_TEAM = 57YNQZ8RV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeNaAreia/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pé na Areia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "O aplicativo precisa acessar sua localização para obter informações meteorológicas.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,7 +409,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -420,14 +425,17 @@
 				DEVELOPMENT_TEAM = 57YNQZ8RV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeNaAreia/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pé na Areia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "O aplicativo precisa acessar sua localização para obter informações meteorológicas.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,7 +449,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

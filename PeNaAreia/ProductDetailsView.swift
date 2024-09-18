@@ -16,8 +16,6 @@ struct ProductDetailsView: View {
     @State private var searchText = ""
     var foodText: String
     
-    
-    
     @State private var selectedProductsFilter: ProductsFilter?
     @State private var productTentMapping: [CKRecord.ID: Tents] = [:]
     @State private var tentRelation: Tents?
@@ -28,30 +26,23 @@ struct ProductDetailsView: View {
     ]
     
     var body: some View {
-        ZStack {
-            Image("productdetailsbackground")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            
-            
-            VStack {
-                
-                
+        ZStack(alignment: .top){
+            Color.medium2Blue.ignoresSafeArea()
+            VStack{
+                Image("waves")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.bottom, 20)
                 HStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .padding(.leading, 8)
-                            .foregroundStyle(Color.magnifyingglass)
-                        TextField("Procure por produtos", text: $searchText)
-                    }
-                    .frame(width: 353, height: 36)
-                    .background(Color.searchbar)
-                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
-                    
+                    Image(systemName: "magnifyingglass")
+                        .padding(.leading, 8)
+                        .foregroundStyle(Color.magnifyingglass)
+                    TextField("Procure por produtos", text: $searchText)
                 }
+                .frame(width: 353, height: 36)
+                .background(Color.searchbar)
+                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
                 .padding(.bottom, 24.0)
-                
                 HStack {
                     Text(foodText)
                         .font(.system(size: 24))
@@ -249,14 +240,10 @@ struct ProductDetailsView: View {
                     }
                 }
             }
-            .padding(.top, 70.0)
-            
-            
-            
         }
-        
-        
-        
+        .frame(maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(.container, edges: .top)
+
     }
     
     //    func productFilterFunction(product: Products) -> Bool {
