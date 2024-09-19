@@ -15,6 +15,12 @@ struct ProductsView: View {
     ]
     
     var body: some View {
+        
+        ZStack {
+            
+            Color("backgroundsand")
+                .ignoresSafeArea()
+            
             ScrollView {
                 
                 VStack (alignment: .leading)  {
@@ -24,32 +30,32 @@ struct ProductsView: View {
                         .padding(.top, -4)
                     
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 40) {
                         NavigationLink(destination: ProductDetailsView(foodText: "Batatas fritas")) {
-                                      ProductItem(backgroundImage: "productsand", foodImage: "batatas_fritas", foodText: "Batatas fritas", offset: -10)
-                                    }
+                            ProductItem(backgroundImage: "productsand", foodImage: "batatas_fritas", foodText: "Batatas fritas", offset: -10)
+                        }
                         NavigationLink(destination: ProductDetailsView(foodText: "Espetinhos")) {
-                          ProductItem(backgroundImage: "productblue", foodImage: "espetinhos", foodText: "Espetinhos", offset: -14)
+                            ProductItem(backgroundImage: "productblue", foodImage: "espetinhos", foodText: "Espetinhos", offset: -14)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Caldinhos")) {
-                          ProductItem(backgroundImage: "productblue", foodImage: "caldinhos", foodText: "Caldinhos", offset: -19)
+                            ProductItem(backgroundImage: "productblue", foodImage: "caldinhos", foodText: "Caldinhos", offset: -19)
                         }
-                        NavigationLink(destination: ProductDetailsView(foodText: "Peixes e Frutos do Mar")) {
-                          ProductItem(backgroundImage: "productsand", foodImage: "shrimp", foodText: "Peixes e Frutos do Mar", offset: -19)
+                        NavigationLink(destination: ProductDetailsView(foodText: "Peixes e Frutos")) {
+                            ProductItem(backgroundImage: "productsand", foodImage: "shrimp", foodText: "Peixes e Frutos", offset: -19)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Almoços")) {
                             ProductItem(backgroundImage: "productsand", foodImage: "lunch", foodText: "Almoços", offset: -13)
                         }
                         NavigationLink(destination: ProductDetailsView(foodText: "Lanches")) {
-                          ProductItem(backgroundImage: "productblue", foodImage: "hamburguer", foodText: "Lanches", offset: -14)
-                        }            
+                            ProductItem(backgroundImage: "productblue", foodImage: "hamburguer", foodText: "Lanches", offset: -14)
+                        }
                         
                     }
                     
                     ProductTitle(title: "Bebidas")
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 40)
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 40) {
                         
                         NavigationLink(destination: ProductDetailsView(foodText: "Águas")) {
                             ProductItem(backgroundImage: "productsand", foodImage: "aguas", foodText: "Águas", offset: -26)
@@ -72,8 +78,9 @@ struct ProductsView: View {
                         
                     }
                 }
-            }  .background(Color.backgroundsand)
+            }
             .frame(width: 350)
+        }
     }
 }
 
@@ -106,12 +113,12 @@ struct ProductItem: View {
                 Image("\(backgroundImage)")
                 Image("\(foodImage)")
                     .offset(y: offset)
-            }
+            } .shadow(color: Color.gray.opacity(0.4), radius: 5)
             
             Text("\(foodText)")
                 .foregroundStyle(Color.darkerblue)
-                .font(.system(size: 14, weight: .medium, design: .rounded))
-                .padding(.top, 8)
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .padding(.top, 4)
             
         } .frame(width: 141, height: 116)
     }

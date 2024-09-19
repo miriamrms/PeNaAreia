@@ -8,13 +8,27 @@
 import SwiftUI
 import CoreLocation
 
-struct TentDetailsView: View {
+enum StallMenu: String, CaseIterable {
+    case comidas = "Comidas"
+    case bebidas = "Bebidas"
+    
+    var images: String {
+        switch self {
+        case .comidas:
+            return "coco.ic"
+        case .bebidas:
+            return "fish.ic"
+        }
+    }
+}
 
+struct TentDetailsView: View {
+    
     let tent: Tents
     let isLocationAutorized: Bool
     let distance: String
-    @State var selectedCategory: String = Category.comidas.rawValue
-
+    @State private var selectedCategory: StallMenu = .comidas
+    
     @AppStorage("favTents") var favTents: [String] = []
     
     var body: some View {
@@ -59,6 +73,7 @@ struct TentDetailsView: View {
                                 .fontDesign(.rounded)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.darkblue)
+                                .padding(.bottom, 4)
                             
                             VStack (spacing:-3){
                                 if tent.capacity == "Alta"{
@@ -71,15 +86,16 @@ struct TentDetailsView: View {
                                     Image("lotacaoBaixa.ic")
                                 }
                                 
-                                Text("Lotação há 2min")
+                                Text("Lotação há:\n2min")
                                     .font(.system(size: 12))
                                     .fontDesign(.rounded)
                                     .fontWeight(.light)
                                     .foregroundColor(Color.darkblue)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 4)
                             }
                         }
                         
-                        //localização
                         HStack{
                             Link(destination: URL(string: tent.linkMap)!) {
                                 Image(systemName: "map")
@@ -95,7 +111,7 @@ struct TentDetailsView: View {
                         .padding(.leading)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     } .padding(.bottom, 10)
-
+                    
                     HStack{
                         VStack {
                             HStack {
@@ -127,32 +143,63 @@ struct TentDetailsView: View {
                     }
                     .padding(.leading)
                     
-                    //MARK: - Segmented control
-                    SegmentedControlView(selectedCategory: $selectedCategory)
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 320, height: 8)
+                            .foregroundStyle(Color.lighterblue)
+                            .offset(y: 30)
+                        
+                        HStack {
+                            ForEach(StallMenu.allCases, id: \.self) { category in
+                                Button(action: {
+                                    selectedCategory = category
+                                }) {
+//                                    ZStack {
+//                                        if selectedCategory == category {
+//                                            Rectangle()
+//                                                .frame(width: 160, height: 8)
+//                                                .foregroundStyle(Color.lightblue)
+//                                                .clipShape(RoundedRectangle(cornerRadius: 2))
+//                                                .offset(x: 23, y: 20)
+//                                        }
+//                                        
+//                                        HStack {
+//                                            Image(systemName: category.images)
+//                                            Text(category.rawValue)
+//                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+//                                        }
+//                                        .frame(width: 196)
+//                                        .foregroundStyle(selectedCategory == category ? .darkblue : .lightblue)
+//                                    }
+                                    
+                                    
+                                }
+                            }
+                        }
                         .padding(.top, 20)
-                    TentProductsListView(tent: tent, masterCategory: selectedCategory)
+                    } .frame(width: .infinity)
+                    
+                    TentProductsListView(tent: tent, masterCategory: selectedCategory.rawValue)
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
-                .offset(y:-36)
-                
-                
+                .frame(width: 320)
+                .offset(y: -36)
             }
-            
         }
         .frame(maxHeight: .infinity, alignment: .top)
         
     }
     func isFav(tent: Tents) -> Bool {
-            return favTents.contains(tent.name)
+        return favTents.contains(tent.name)
+    }
+    func toggleFav(tent: Tents) {
+        if let index = favTents.firstIndex(of: tent.name) {
+            favTents.remove(at: index)
+        } else {
+            favTents.append(tent.name)
         }
-        func toggleFav(tent: Tents) {
-            if let index = favTents.firstIndex(of: tent.name) {
-                favTents.remove(at: index)
-            } else {
-                favTents.append(tent.name)
-            }
-        }
-        
+    }
+    
 }
 
 struct TentTags: View {
@@ -195,5 +242,5 @@ struct TentTags: View {
             averagePrice: "3",
             capacity: "Média"
         )
-    , isLocationAutorized: true, distance: "54m")
+        , isLocationAutorized: true, distance: "54m")
 }
