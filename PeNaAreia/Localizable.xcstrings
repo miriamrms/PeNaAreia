@@ -1,7 +1,11 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -70,6 +74,7 @@
       }
     },
     "Barracas" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -101,7 +106,7 @@
         }
       }
     },
-    "Lotação há 2min" : {
+    "Lotação há:\n2min" : {
 
     },
     "mostlyCloudly" : {
@@ -133,6 +138,7 @@
 
     },
     "Produtos" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {

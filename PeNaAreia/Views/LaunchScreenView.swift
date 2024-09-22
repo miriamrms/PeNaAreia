@@ -12,11 +12,9 @@ struct AnimatedWaveView: View {
     
     var body: some View {
         ZStack {
-            // Fundo branco no topo
             Color.white
                 .edgesIgnoringSafeArea(.all)
             
-            // Adicionando a onda animada
             TimelineView(.animation) { timeline in
                 let date = timeline.date.timeIntervalSinceReferenceDate
                 let animatedPhase = CGFloat(date.truncatingRemainder(dividingBy: 2)) * .pi * 2
@@ -31,7 +29,7 @@ struct AnimatedWaveView: View {
                         .fill(Color.darkblue)
                         .frame(height: 430)
                         .offset(y: 200)
-                } // Posicione a onda como preferir
+                }
                 
                 
             }
@@ -116,7 +114,7 @@ struct Wave2ShapeReverse: Shape {
         
         for x in stride(from: 0, through: width, by: 1) {
             let relativeX = x / width
-            let sine = sin(1 * .pi * relativeX - phase) // Inverter a fase para o sentido oposto
+            let sine = sin(1 * .pi * relativeX - phase)
             let y = waveHeight * sine + height * 0.08
             path.addLine(to: CGPoint(x: x, y: y))
         }
@@ -144,7 +142,7 @@ struct WaveShapeOpposite: Shape {
         
         for x in stride(from: 0, through: width, by: 1) {
             let relativeX = x / width
-            let sine = sin(2.3 * .pi * relativeX - phase) // Inverter a fase para o sentido oposto
+            let sine = sin(2.3 * .pi * relativeX - phase)
             let y = waveHeight * sine + height * 0.5
             path.addLine(to: CGPoint(x: x, y: y))
         }

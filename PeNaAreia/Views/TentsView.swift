@@ -40,59 +40,63 @@ struct TentsView: View {
     
     var body: some View {
         
-        VStack {
-            HStack{
-                SearchBar
-                
-                
-                Menu {
-                    Picker("teste", selection: $selectedTentFilter) {
-                        ForEach(TentsFilter.allCases, id: \.self) {
-                            tentFilter in Text(tentFilter.rawValue).tag(tentFilter as TentsFilter?)
-                        }
-                    }
-                }
-            label: { Image(systemName: "line.3.horizontal.decrease.circle")
-                    .imageScale(.large)
-                    .foregroundStyle(Color.darkerblue)
-            }
-                
-            } .padding(.bottom, 16)
+        ZStack {
             
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    if let location = distanceModel.location{
-                        ForEach(filteredAndSearchTents, id: \.id){ tent in
-                            let distanceInMeters = tent.coordinates.distance(from: location)
-                            let kilometers = Int(distanceInMeters) / 1000
-                            let meters = Int(distanceInMeters) % 1000
-                            let distance = (kilometers == 0) ? "\(meters)m" : "\(kilometers)km e \(meters)m"
-                            
-                            NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: true, distance: distance)){
-                                TentCard(tent: tent, isLocationAutorized: true, distance: distance)
+            Color("backgroundsand")
+                .ignoresSafeArea()
+            
+            VStack {
+                HStack{
+                    SearchBar
+                    Menu {
+                        Picker("teste", selection: $selectedTentFilter) {
+                            ForEach(TentsFilter.allCases, id: \.self) {
+                                tentFilter in Text(tentFilter.rawValue).tag(tentFilter as TentsFilter?)
                             }
                         }
                     }
-                    else{
-                        ForEach(filteredAndSearchTents, id: \.id){ tent in
-                            NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: false, distance: "")){
-                                TentCard(tent: tent, isLocationAutorized: false, distance: "")
-                            }
-                        }
-                    }
+                label: { Image(systemName: "line.3.horizontal.decrease.circle")
+                        .imageScale(.large)
+                        .foregroundStyle(Color.darkerblue)
+                }
                     
-                } .padding(0)
+                } .padding(.bottom, 16)
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        if let location = distanceModel.location{
+                            ForEach(filteredAndSearchTents, id: \.id){ tent in
+                                let distanceInMeters = tent.coordinates.distance(from: location)
+                                let kilometers = Int(distanceInMeters) / 1000
+                                let meters = Int(distanceInMeters) % 1000
+                                let distance = (kilometers == 0) ? "\(meters)m" : "\(kilometers)km e \(meters)m"
+                                
+                                NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: true, distance: distance)){
+                                    TentCard(tent: tent, isLocationAutorized: true, distance: distance)
+                                }
+                            }
+                        }
+                        else{
+                            ForEach(filteredAndSearchTents, id: \.id){ tent in
+                                NavigationLink(destination: TentDetailsView(tent: tent, isLocationAutorized: false, distance: "")){
+                                    TentCard(tent: tent, isLocationAutorized: false, distance: "")
+                                }
+                            }
+                        }
+                        
+                    } .padding(0)
+                }
             }
+
+            .frame(width: 354)
+            .task {
+                do{
+                    try await ckModel.populateTents()
+                }
+                catch{
+                    print(error)
+                }
         }
-        .background(Color.backgroundsand)
-        .frame(width: 354)
-        .task {
-            do{
-                try await ckModel.populateTents()
-            }
-            catch{
-                print(error)
-            }
         }
     }
     
@@ -144,6 +148,7 @@ struct TentsView: View {
     //funcao de busca -> atualizar a tentViews
     
 }
+
 
 struct TentCard: View {
 

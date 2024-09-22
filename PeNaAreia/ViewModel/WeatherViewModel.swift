@@ -21,8 +21,6 @@ class WeatherViewModel: ObservableObject {
     @Published var weather: Weather?
     @Published var tideStatus: String = "..."
     
-//    private let tideService = TideService()
-    
     @MainActor
     func showWeather() async {
         do {
@@ -34,27 +32,11 @@ class WeatherViewModel: ObservableObject {
         }
     }
     
-//    func fetchTide() {
-//        tideService.fetchTideData(lat: location.coordinate.latitude, lon: location.coordinate.longitude, radius: 50) { result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let tideResponse):
-//                    if let latestTide = tideResponse.heights.last {
-//                        self.tideStatus = latestTide.height > 1 ? "Maré alta" : "Maré baixa"
-//                    }
-//                case .failure(let error):
-//                    print("Erro ao carregar os dados de maré: \(error)")
-//                    self.tideStatus = "Erro ao carregar maré"
-//                }
-//            }
-//        }
-//    }
     
     func startAutoUpdate() {
             Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
                 Task {
                     await self.showWeather()
-//                    self.fetchTide()
                 }
             }
         }

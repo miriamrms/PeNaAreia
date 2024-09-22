@@ -64,5 +64,5 @@ struct TentProductsListView: View {
         toilet: false,
         averagePrice: "3",
         capacity: "Média"
-    ), masterCategory: "Comidas")
+    ), masterCategory: "Bebidas")
 }

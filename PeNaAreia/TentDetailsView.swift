@@ -8,13 +8,27 @@
 import SwiftUI
 import CoreLocation
 
-struct TentDetailsView: View {
+enum StallMenu: String, CaseIterable {
+    case comidas = "Comidas"
+    case bebidas = "Bebidas"
+    
+    var images: [String] {
+        switch self {
+        case .comidas:
+            return ["darkfish","lightfish"]
+        case .bebidas:
+            return ["darkcoconut","lightcoconut"]
+        }
+    }
+}
 
+struct TentDetailsView: View {
+    
     let tent: Tents
     let isLocationAutorized: Bool
     let distance: String
-    @State var selectedCategory: String = Category.comidas.rawValue
-
+    @State private var selectedCategory: StallMenu = .comidas
+    
     @AppStorage("favTents") var favTents: [String] = []
     
     var body: some View {
@@ -51,15 +65,17 @@ struct TentDetailsView: View {
                             }
                         }
                     }
-                    VStack {
-                        HStack (alignment: .center) {
+                    VStack(){
+                        HStack{
                             Text(tent.name)
                                 .font(.system(size: 34))
                                 .frame(width: 280, alignment: .leading)
                                 .fontDesign(.rounded)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.darkblue)
-                            
+                                .padding(.bottom, 4)
+                                
+                            Spacer()
                             VStack (spacing:-3){
                                 if tent.capacity == "Alta"{
                                     Image("lotacaoAlta.ic")
@@ -71,15 +87,18 @@ struct TentDetailsView: View {
                                     Image("lotacaoBaixa.ic")
                                 }
                                 
-                                Text("Lotação há 2min")
+                                Text("Lotação há:\n2min")
                                     .font(.system(size: 12))
                                     .fontDesign(.rounded)
                                     .fontWeight(.light)
                                     .foregroundColor(Color.darkblue)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 4)
                             }
                         }
-                        
-                        //localização
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    
+
                         HStack{
                             Link(destination: URL(string: tent.linkMap)!) {
                                 Image(systemName: "map")
@@ -92,10 +111,10 @@ struct TentDetailsView: View {
                             }
                             Spacer()
                         }
-                        .padding(.leading)
+                    
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     } .padding(.bottom, 10)
-
+                    
                     HStack{
                         VStack {
                             HStack {
@@ -125,34 +144,71 @@ struct TentDetailsView: View {
                         }
                         Spacer()
                     }
-                    .padding(.leading)
                     
-                    //MARK: - Segmented control
-                    SegmentedControlView(selectedCategory: $selectedCategory)
+                    
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 360, height: 8)
+                            .foregroundStyle(Color.lighterblue)
+                            .offset(y: 30)
+                        
+                        HStack(spacing: 0){
+                            ForEach(StallMenu.allCases, id: \.self) { category in
+                                Button(action: {
+                                    selectedCategory = category
+
+                                }) {
+                                    ZStack {
+                                        if selectedCategory == category {
+                                            Rectangle()
+                                                .frame(width: 180, height: 8)
+                                                .foregroundStyle(Color.lightblue)
+                                                .clipShape(RoundedRectangle(cornerRadius: 2))
+                                                .offset(y: 20)
+                                        }
+                                        
+                                        HStack {
+//                                            Image(category.images)
+                                            Image((category == selectedCategory ? category.images[0] : category.images[1]))
+                                            Text(category.rawValue)
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                        }
+                                        .frame(width: 196)
+                                        .foregroundStyle(selectedCategory == category ? .darkblue : .lightblue)
+                                    }
+                                    .frame(width: 180)
+                                }
+                            }
+                        }
                         .padding(.top, 20)
-                    TentProductsListView(tent: tent, masterCategory: selectedCategory)
+                    } .frame(width: 360)
+                    
+                    TentProductsListView(tent: tent, masterCategory: selectedCategory.rawValue)
+                        .frame(width: 360)
+            
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
-                .offset(y:-36)
-                
-                
+                .frame(width: 360)
+                .offset(y: -36)
             }
+            .frame(width: 360)
             
         }
+        
         .frame(maxHeight: .infinity, alignment: .top)
         
     }
     func isFav(tent: Tents) -> Bool {
-            return favTents.contains(tent.name)
+        return favTents.contains(tent.name)
+    }
+    func toggleFav(tent: Tents) {
+        if let index = favTents.firstIndex(of: tent.name) {
+            favTents.remove(at: index)
+        } else {
+            favTents.append(tent.name)
         }
-        func toggleFav(tent: Tents) {
-            if let index = favTents.firstIndex(of: tent.name) {
-                favTents.remove(at: index)
-            } else {
-                favTents.append(tent.name)
-            }
-        }
-        
+    }
+    
 }
 
 struct TentTags: View {
@@ -195,5 +251,5 @@ struct TentTags: View {
             averagePrice: "3",
             capacity: "Média"
         )
-    , isLocationAutorized: true, distance: "54m")
+        , isLocationAutorized: true, distance: "54m")
 }
