@@ -12,12 +12,12 @@ enum StallMenu: String, CaseIterable {
     case comidas = "Comidas"
     case bebidas = "Bebidas"
     
-    var images: String {
+    var images: [String] {
         switch self {
         case .comidas:
-            return "coco.ic"
+            return ["darkfish","lightfish"]
         case .bebidas:
-            return "fish.ic"
+            return ["darkcoconut","lightcoconut"]
         }
     }
 }
@@ -65,8 +65,8 @@ struct TentDetailsView: View {
                             }
                         }
                     }
-                    VStack {
-                        HStack (alignment: .center) {
+                    VStack(){
+                        HStack{
                             Text(tent.name)
                                 .font(.system(size: 34))
                                 .frame(width: 280, alignment: .leading)
@@ -74,7 +74,8 @@ struct TentDetailsView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.darkblue)
                                 .padding(.bottom, 4)
-                            
+                                
+                            Spacer()
                             VStack (spacing:-3){
                                 if tent.capacity == "Alta"{
                                     Image("lotacaoAlta.ic")
@@ -95,7 +96,9 @@ struct TentDetailsView: View {
                                     .padding(.top, 4)
                             }
                         }
-                        
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    
+
                         HStack{
                             Link(destination: URL(string: tent.linkMap)!) {
                                 Image(systemName: "map")
@@ -108,7 +111,7 @@ struct TentDetailsView: View {
                             }
                             Spacer()
                         }
-                        .padding(.leading)
+                    
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     } .padding(.bottom, 10)
                     
@@ -141,51 +144,57 @@ struct TentDetailsView: View {
                         }
                         Spacer()
                     }
-                    .padding(.leading)
+                    
                     
                     ZStack {
                         Rectangle()
-                            .frame(width: 320, height: 8)
+                            .frame(width: 360, height: 8)
                             .foregroundStyle(Color.lighterblue)
                             .offset(y: 30)
                         
-                        HStack {
+                        HStack(spacing: 0){
                             ForEach(StallMenu.allCases, id: \.self) { category in
                                 Button(action: {
                                     selectedCategory = category
+
                                 }) {
-//                                    ZStack {
-//                                        if selectedCategory == category {
-//                                            Rectangle()
-//                                                .frame(width: 160, height: 8)
-//                                                .foregroundStyle(Color.lightblue)
-//                                                .clipShape(RoundedRectangle(cornerRadius: 2))
-//                                                .offset(x: 23, y: 20)
-//                                        }
-//                                        
-//                                        HStack {
-//                                            Image(systemName: category.images)
-//                                            Text(category.rawValue)
-//                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-//                                        }
-//                                        .frame(width: 196)
-//                                        .foregroundStyle(selectedCategory == category ? .darkblue : .lightblue)
-//                                    }
-                                    
-                                    
+                                    ZStack {
+                                        if selectedCategory == category {
+                                            Rectangle()
+                                                .frame(width: 180, height: 8)
+                                                .foregroundStyle(Color.lightblue)
+                                                .clipShape(RoundedRectangle(cornerRadius: 2))
+                                                .offset(y: 20)
+                                        }
+                                        
+                                        HStack {
+//                                            Image(category.images)
+                                            Image((category == selectedCategory ? category.images[0] : category.images[1]))
+                                            Text(category.rawValue)
+                                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                        }
+                                        .frame(width: 196)
+                                        .foregroundStyle(selectedCategory == category ? .darkblue : .lightblue)
+                                    }
+                                    .frame(width: 180)
                                 }
                             }
                         }
                         .padding(.top, 20)
-                    } .frame(width: .infinity)
+                    } .frame(width: 360)
                     
                     TentProductsListView(tent: tent, masterCategory: selectedCategory.rawValue)
+                        .frame(width: 360)
+            
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
-                .frame(width: 320)
+                .frame(width: 360)
                 .offset(y: -36)
             }
+            .frame(width: 360)
+            
         }
+        
         .frame(maxHeight: .infinity, alignment: .top)
         
     }
