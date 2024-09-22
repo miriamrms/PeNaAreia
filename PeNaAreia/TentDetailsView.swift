@@ -28,6 +28,7 @@ struct TentDetailsView: View {
     let isLocationAutorized: Bool
     let distance: String
     @State private var selectedCategory: StallMenu = .comidas
+    @Namespace private var namespace
     
     @AppStorage("favTents") var favTents: [String] = []
     
@@ -149,8 +150,10 @@ struct TentDetailsView: View {
                     ZStack {
                         Rectangle()
                             .frame(width: 360, height: 8)
+                            .clipShape(RoundedRectangle(cornerRadius: 2))
                             .foregroundStyle(Color.lighterblue)
                             .offset(y: 30)
+                        
                         
                         HStack(spacing: 0){
                             ForEach(StallMenu.allCases, id: \.self) { category in
@@ -165,23 +168,26 @@ struct TentDetailsView: View {
                                                 .foregroundStyle(Color.lightblue)
                                                 .clipShape(RoundedRectangle(cornerRadius: 2))
                                                 .offset(y: 20)
+                                                .matchedGeometryEffect(id: selectedCategory, in: namespace)
+                                            
                                         }
                                         
                                         HStack {
-//                                            Image(category.images)
                                             Image((category == selectedCategory ? category.images[0] : category.images[1]))
                                             Text(category.rawValue)
                                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                        }
+                                        } 
                                         .frame(width: 196)
                                         .foregroundStyle(selectedCategory == category ? .darkblue : .lightblue)
                                     }
                                     .frame(width: 180)
                                 }
                             }
-                        }
+                        } 
                         .padding(.top, 20)
                     } .frame(width: 360)
+                    
+                    
                     
                     TentProductsListView(tent: tent, masterCategory: selectedCategory.rawValue)
                         .frame(width: 360)

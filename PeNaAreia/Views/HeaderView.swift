@@ -41,7 +41,7 @@ struct HeaderView: View {
                 
                 if let weather = wvm.weather {
                     
-                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º")
+                    Text("\(NSLocalizedString(weather.currentWeather.condition.rawValue, comment: "").capitalized), \(Int(weather.currentWeather.temperature.value))º | Maré Alta")
                         .foregroundStyle(Color.darkerblue)
                         .font(.system(size: 14, design: .rounded))
                 } else {
