@@ -4,7 +4,7 @@
     <img src="https://github.com/miriamrms/PeNaAreia/blob/main/PeNaAreia/Assets.xcassets/AppIcon.appiconset/icon.png" alt="Logo" height="300">
   </a>
   <h2 align="center">Pé da Areia 🏖️</h2> 
-  <h3 align="center">"Add a slogan"</h3>
+  <h3 align="center">"Feet in the sand, info at hand"</h3>
 
   <p align="center">
     Apple Developer Academy - UFPE | Third Challenge | September 2024
